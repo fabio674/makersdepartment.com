@@ -727,4 +727,12 @@
     function updateDate() {
       const now = new Date();
       const opts = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Europe/Lisbon' };
-      const time = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe
+      const time = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Lisbon' });
+      document.getElementById('live-date').textContent = `${now.toLocaleDateString('en-GB', opts)} · ${time}`;
+    }
+    updateDate();
+    setInterval(updateDate, 30000);
+  </script>
+
+</body>
+</html>
