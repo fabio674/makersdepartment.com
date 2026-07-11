@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Latest Work | Makers Department</title>
+<meta name="description" content="Selected industrial design work by Makers Department — IoT, medtech, robotics and consumer electronics products taken from prototype to market.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;1,900&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --forge-black: #0D0C10;
+    --raw-white: #F5F2EE;
+    --maker-violet: #7B2FFF;
+    --panel: #131118;
+    --line: #1E1A28;
+    --dim: #3A3545;
+    --mid: #555060;
+    --faint: #2A2530;
+  }
+
+  html, body { width: 100%; min-height: 100vh; }
+
+  body {
+    background-color: var(--forge-black);
+    color: var(--raw-white);
+    font-family: 'Barlow', sans-serif;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ════════ LAYOUT ════════ */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 320px;
+    padding: 36px 28px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-right: 1px solid var(--line);
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
+  }
+
+  .main {
+    margin-left: 320px;
+    padding: 36px 40px 60px 40px;
+    min-height: 100vh;
+  }
+
+  /* ════════ SIDEBAR — LOGO (placeholder, to be reviewed) ════════ */
+  .side-logo { display: block; margin-bottom: 22px; }
+
+  .side-logo__makers {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 44px;
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    color: var(--raw-white);
+    display: block;
+  }
+
+  .side-logo__rule-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .side-logo__rule { height: 2px; background-color: var(--maker-violet); }
+  .side-logo__rule--left { flex: 1 1 0; min-width: 0; }
+  .side-logo__rule--right { width: 12px; flex-shrink: 0; }
+
+  .side-logo__dept {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    color: var(--maker-violet);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ════════ SIDEBAR — DATE / LOCATION ════════ */
+  .side-meta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    line-height: 2.1;
+    margin-bottom: 28px;
+  }
+  .side-meta__date { color: var(--mid); display: block; }
+  .side-meta__loc { color: var(--mid); display: block; }
+  .side-meta__loc--alt { color: var(--dim); }
+
+  /* ════════ SIDEBAR — NAV LIST ════════ */
+  .nav-list { display: flex; flex-direction: column; gap: 2px; margin-bottom: 32px; }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 10px 8px 8px;
+    margin-left: -8px;
+    border-radius: 3px;
+    transition: background-color 0.15s;
+  }
+  .nav-item:hover { background-color: #16141B; }
+  .nav-item.is-active { background-color: #16141B; box-shadow: inset 2px 0 0 var(--maker-violet); }
+
+  .nav-item__thumb {
+    width: 52px;
+    height: 36px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border-radius: 2px;
+    filter: grayscale(1) brightness(0.75);
+    transition: filter 0.2s;
+  }
+  .nav-item:hover .nav-item__thumb,
+  .nav-item.is-active .nav-item__thumb { filter: grayscale(0.4) brightness(0.95); }
+
+  .nav-item__text { min-width: 0; }
+
+  .nav-item__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: var(--raw-white);
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .nav-item__title s { color: var(--mid); text-decoration-color: var(--maker-violet); }
+
+  .nav-item__desc {
+    font-size: 11px;
+    color: var(--mid);
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ════════ SIDEBAR — FOOT ════════ */
+  .side-foot { margin-top: auto; display: flex; flex-direction: column; gap: 8px; padding-top: 24px; }
+
+  .side-foot a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    transition: color 0.2s;
+  }
+  .side-foot__intro { color: var(--dim); }
+  .side-foot__intro:hover { color: var(--maker-violet); }
+  .side-foot__email { color: var(--maker-violet); }
+
+  /* ════════ MAIN — VIEWS ════════ */
+  .view { display: none; }
+  .view.is-visible { display: block; }
+
+  /* ── HOME: slideshow ── */
+  .slideshow {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    background-color: var(--panel);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+  .slideshow img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+  }
+  .slideshow img.is-showing { opacity: 1; }
+
+  .slideshow__counter {
+    position: absolute;
+    bottom: 14px;
+    right: 16px;
+    z-index: 2;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--raw-white);
+    opacity: 0.55;
+  }
+
+  /* ── HOME: cards ── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 32px;
+  }
+
+  .card { display: block; }
+  .card__img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    background-color: var(--panel);
+    border: 1px solid var(--line);
+    filter: grayscale(0.6) brightness(0.9);
+    transition: filter 0.25s;
+    display: block;
+  }
+  .card:hover .card__img { filter: grayscale(0) brightness(1); }
+
+  .card__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 0.12em;
+    color: var(--raw-white);
+    margin-top: 14px;
+    display: block;
+  }
+  .card__text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--mid);
+    margin-top: 4px;
+    display: block;
+    max-width: 46ch;
+  }
+
+  /* ── PROJECT VIEW ── */
+  .project__hero {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    background-color: var(--panel);
+    border: 1px solid var(--line);
+    display: block;
+    margin-bottom: 32px;
+  }
+
+  .project__video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: var(--panel);
+    border: 1px solid var(--line);
+    margin-bottom: 32px;
+  }
+  .project__video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .project__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 30px;
+    letter-spacing: -0.01em;
+    color: var(--raw-white);
+    margin-bottom: 24px;
+  }
+
+  .panels {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 24px;
+  }
+
+  .panel {
+    background-color: var(--panel);
+    border: 1px solid var(--line);
+    padding: 28px;
+  }
+
+  .panel__label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--maker-violet);
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .panel__body { font-size: 14px; line-height: 1.75; color: #B8B3AE; }
+
+  .panel__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .panel__links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--mid);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 5px 10px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .panel__links a:hover { color: var(--maker-violet); border-color: var(--maker-violet); }
+
+  /* ── ABOUT VIEW ── */
+  .about { max-width: 640px; }
+  .about__portrait {
+    width: 220px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    background-color: var(--panel);
+    border: 1px solid var(--line);
+    display: block;
+    margin-bottom: 28px;
+    filter: grayscale(1) brightness(0.85);
+  }
+  .about__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 30px;
+    color: var(--raw-white);
+    margin-bottom: 20px;
+  }
+  .about__title s { color: var(--mid); text-decoration-color: var(--maker-violet); }
+  .about__body { font-size: 14px; line-height: 1.85; color: #B8B3AE; }
+  .about__body a { color: var(--maker-violet); border-bottom: 1px solid rgba(123,47,255,0.3); }
+
+  /* ── ABOUT: client wordmarks ── */
+  .clients { margin-top: 40px; }
+  .clients__label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--maker-violet);
+    display: block;
+    margin-bottom: 18px;
+  }
+  .clients__list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 28px;
+  }
+  .clients__list li {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    color: var(--mid);
+    transition: color 0.2s;
+  }
+  .clients__list li:hover { color: var(--raw-white); }
+
+  /* ════════ MOBILE — sidebar stacks on top ════════ */
+  @media (max-width: 900px) {
+    .sidebar {
+      position: static;
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--line);
+      padding: 28px 24px 20px 24px;
+    }
+    .main { margin-left: 0; padding: 28px 24px 48px 24px; }
+    .cards { grid-template-columns: 1fr; }
+    .panels { grid-template-columns: 1fr; }
+    .side-foot { margin-top: 20px; flex-direction: row; justify-content: space-between; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ════════════════ SIDEBAR (always on) ════════════════ -->
+  <aside class="sidebar">
+
+    <!-- LOGO — PLACEHOLDER, to be reviewed/replaced by Fabio -->
+    <a class="side-logo" href="#" aria-label="Makers Department — latest work home">
+      <span class="side-logo__makers">Makers</span>
+      <div class="side-logo__rule-row">
+        <div class="side-logo__rule side-logo__rule--left"></div>
+        <span class="side-logo__dept">Department</span>
+        <div class="side-logo__rule side-logo__rule--right"></div>
+      </div>
+    </a>
+
+    <!-- DATE / LOCATION -->
+    <div class="side-meta">
+      <span class="side-meta__date" id="live-date">—</span>
+      <span class="side-meta__loc">Lisbon</span>
+      <span class="side-meta__loc side-meta__loc--alt">Sometimes London</span>
+    </div>
+
+    <!-- NAV LIST — built by JS from PROJECTS data below -->
+    <nav class="nav-list" id="nav-list"></nav>
+
+    <!-- FOOT -->
+    <div class="side-foot">
+      <a class="side-foot__intro" href="index.html">&larr; Intro</a>
+      <a class="side-foot__intro" href="https://wa.me/447541904649?text=Hi%2C%20I%27d%20like%20a%20short%20chat%20about%20a%20project." target="_blank" rel="noopener noreferrer">WhatsApp — a short chat</a>
+      <a class="side-foot__email" href="mailto:makersdepartment@gmail.com">makersdepartment@gmail.com</a>
+    </div>
+
+  </aside>
+
+  <!-- ════════════════ MAIN ════════════════ -->
+  <main class="main">
+
+    <!-- HOME VIEW: slideshow + cards -->
+    <section class="view" id="view-home">
+      <div class="slideshow" id="slideshow">
+        <span class="slideshow__counter" id="slide-counter">01 / 10</span>
+      </div>
+      <div class="cards" id="cards"></div>
+    </section>
+
+    <!-- ABOUT VIEW -->
+    <section class="view" id="view-about">
+      <div class="about">
+        <img class="about__portrait" src="images/about/portrait.jpg" alt="Portrait">
+        <h1 class="about__title">About <s>us</s> me</h1>
+        <p class="about__body">
+          Makers Department started life as an agency. These days, the department is
+          mostly one maker — and that's not a confession, it's the offer. I began as an
+          industrial designer, but startups have a way of stretching you: soon I was
+          managing processes and people well beyond design, deep in engineering,
+          manufacturing and business decisions. Somewhere along the way I stopped being
+          'the designer' and became the strategic right arm founders call when things
+          need to get done — a long-term partner, accountable end to end. And when a
+          project needs more hands than mine, I build the team: designers, engineers
+          and manufacturers drawn from a network grown over a decade, managed with the
+          same care I ran my own studio. You get the reach of an agency with the
+          attention of one person who genuinely cares. Less overhead. More making.
+        </p>
+        <div class="clients">
+          <span class="clients__label">Selected clients &amp; collaborations</span>
+          <ul class="clients__list">
+            <li>V&amp;A</li>
+            <li>McLaren</li>
+            <li>Emirates</li>
+            <li>du</li>
+            <li>Libman</li>
+            <li>Unilever</li>
+            <li>Bosch</li>
+            <li>Playforever</li>
+            <li>Joseph Joseph</li>
+            <li>Magnitone</li>
+            <li>Royal Air Force</li>
+            <li>Škoda</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT VIEWS — built by JS from PROJECTS data below -->
+    <div id="project-views"></div>
+
+  </main>
+
+  <script>
+    /* ══════════════════════════════════════════════════════════════
+       PROJECT DATA — edit everything in this one block.
+       Image files live in images/projects/<slug>/ :
+         thumb.jpg  300 x 200   (navigator thumbnail)
+         card.jpg   1200 x 800  (home card)
+         hero.jpg   1800 x 1200 (project page image)
+       Optional fields:
+         video: 'YOUTUBE_ID'  -> replaces the hero image with an
+                embedded player (the ID is the part after watch?v=)
+         links: [{ label, url }]  -> pill links under More information
+       TEXT LIMITS (characters incl. spaces):
+         navDesc: 45 | cardText: 100 | aboutProject: 550 | moreInfo: 350
+       ══════════════════════════════════════════════════════════════ */
+    const PROJECTS = [
+      {
+        slug: 'skoda-duo-bell',
+        title: 'Skoda Duo Bell',
+        navDesc: 'Acoustic Safety Design',
+        cardText: 'A chip-free bicycle bell acoustically engineered to cut through noise-cancelling headphones.',
+        aboutProject: `The DuoBell is an analogue answer to a digital problem. Research with the University of Salford identified a blind spot in active noise-cancelling algorithms between 750–780 Hz — and the bell is engineered to strike exactly there. A secondary resonator and a specialised hammer mechanism produce rapid, irregular strikes that ANC software cannot predict or suppress. No batteries, no Bluetooth, no chips: pure mechanical and acoustic engineering in a minimal, handlebar-ready form.`,
+        moreInfo: `Designed while freelancing as part of the UNIT9 agency team for Škoda. Developed with the University of Salford, launched April 2026 and released patent-free. Covered by Cyclingnews, BikeRadar, T3 and urdesignmag; full story on Škoda Storyboard and We Love Cycling. A modern safety problem solved with zero electronics.`,
+        links: []
+      },
+      {
+        slug: 'wavetec-du',
+        title: 'Wavetec Du',
+        navDesc: 'Self-Service Kiosks',
+        cardText: 'Premium modular self-service kiosks bringing biometric SIM dispensing to telecom operator du.',
+        aboutProject: `Public-facing hardware must survive thousands of daily interactions while looking effortless. For Wavetec's kiosks deployed with UAE operator du, we designed a premium, approachable architecture around demanding internals: SIM dispensing, cash handling, card printing and fingerprint, iris and facial biometrics. The modular sheet-metal construction lets one design language flex across configurations, while screen angles, reach zones and accessibility shaped every surface. Robust CMF choices balance durability, cleanability and retail presence.`,
+        moreInfo: `Wavetec kiosks serve banking and telecom clients worldwide, with du among its flagship operators. The next-generation range launched across the GCC, covered by Zawya and Kiosk Marketplace, delivering 24/7 SIM issuance with real-time KYC.`,
+        video: 'na2MZYKfc8U',   /* YouTube ID — set to '' to fall back to hero.jpg */
+        links: [
+          { label: 'Wavetec', url: 'https://www.wavetec.com/' }
+        ]
+      },
+      {
+        slug: 'infraway-l1',
+        title: 'Infraway L1',
+        navDesc: 'Wearable Infrared Therapy',
+        cardText: 'IoT heat-therapy wearable fusing FIR bioceramic textiles with app-controlled dual-heat electronics.',
+        aboutProject: `The L1 sits where soft goods meet electronics — one of the hardest categories in industrial design. The brief: professional-grade recovery in a form you forget you're wearing. At under an inch thick and 1.5 lbs, the L1 combines a 4-way stretch antimicrobial fabric embedded with far-infrared bioceramics and a patented dual-heat system that penetrates 75 mm below the skin. Flexible heating zones, battery placement and strap architecture were resolved around the body's movement, while Bluetooth app control keeps the hardware interface minimal.`,
+        moreInfo: `Developed under Thunderbolt Wearables with the guidance of Jacob Skinner. Patented Dual-Heat Technology; launch covered by PRWeb.`,
+        links: [
+          { label: 'The Infraway', url: 'https://theinfraway.com/' }
+        ]
+      },
+      {
+        slug: 'magnitone-barefaced',
+        title: 'Magnitone BareFaced',
+        navDesc: 'Ergonomic Beauty Tech',
+        cardText: 'Award-winning Vibra-Sonic cleansing brush — soft-touch CMF in a fully sealed waterproof enclosure.',
+        aboutProject: `How do you redesign a category that stopped evolving? Skin cleansing tools had settled into the same pistol-grip formula — awkward and clinical for such a delicate ritual. Asked to change the face of Magnitone's new generation, we rethought how the device is held: smooth, organic forms that nestle in the palm, bringing the hand closer to the skin and the gesture closer to the ritual. Building around the existing internals, we iterated through foam models, rapid prototypes and user validation until comfort and style met in one iconic silhouette.`,
+        moreInfo: `5-star rated at Boots and Lookfantastic; featured in Vogue and Cosmopolitan. Winner of the Beauty Shortlist Awards 2019, Gold Beauty Awards 2015 and Bronze Beauty Awards 2016; Good Housekeeping Institute Approved. Magnitone is now an award-winning brand and a top-three leader of the UK beauty market.`,
+        links: [
+          { label: 'Magnitone', url: 'https://www.magnitone.co.uk/' },
+          { label: 'Boots', url: 'https://www.boots.com/magnitone-barefaced3-vibra-sonic%C2%AE-facial-cleanse-massage-brush-10327412' },
+          { label: 'Pure Beauty Awards', url: 'https://www.cosmeticsbusiness.com/news/article_page/pure_beauty_awards_2015_winners_revealed/112992' }
+        ]
+      },
+      {
+        slug: 'seergrills-perfecta',
+        title: 'SeerGrills Perfecta',
+        navDesc: 'The First AI-Powered Grill',
+        cardText: 'CES Innovation Award-winning AI grill in glass and stainless steel. A perfect ribeye in 90 seconds.',
+        aboutProject: `The Perfecta proves technical complexity and aesthetic restraint can coexist. Tasked with the interface and exterior design of the world's first AI-powered grill, we wrapped its novel vertical dual-burner configuration in pure geometric forms of glass and stainless steel, elevated by powder coating, brushed and spark-textured finishes. Minimal branding preserves an enigmatic, monolithic presence. Close dialogue between design, engineering and manufacturing took the first working models from concept to reality in a remarkably short timeframe.`,
+        moreInfo: `Winner, CES Innovation Award 2024. Over $1M in orders during the first pre-launch campaign. Featured on Fox News, Engadget and TechHive; now shipping. NeuralFire AI cooks a 1-inch ribeye in 90 seconds.`,
+        links: [
+          { label: 'SeerGrills', url: 'https://seergrills.com/' },
+          { label: 'CES Innovation Award', url: 'https://www.ces.tech/ces-innovation-awards/2024/perfecta/' },
+          { label: 'Engadget', url: 'https://www.engadget.com/home/kitchen-tech/the-ai-powered-perfecta-from-seergrills-is-now-shipping-after-its-ces-2024-debut-163000474.html' },
+          { label: 'TechHive', url: 'https://www.techhive.com/article/2195266/seergrills-peffecta-grill-ces-2024.html' },
+          { label: 'YouTube', url: 'https://www.youtube.com/channel/UC3AuQgsmfyvh6pjSXNmJWlQ' },
+          { label: 'A Robot Cooked My Steak', url: 'https://www.youtube.com/watch?v=-oLvxWQyALw' }
+        ]
+      },
+      {
+        slug: 'dishmatic-mk5',
+        title: 'Dishmatic Mk5',
+        navDesc: 'A Kitchen Icon, Evolved',
+        cardText: "UK's favourite dish brush — found in 6 of 10 British homes.",
+        aboutProject: `Redesigning an icon is harder than starting fresh. The Dishmatic handle lives in 6 out of 10 UK households, so the MK5 had to improve ergonomics, fluid dispensing and assembly without alienating millions of loyal users. We refined the grip geometry and click-together refill interface, pushing tool-making and moldflow constraints to keep the part count low and the assembly intuitive. Material selection continued the brand's sustainability trajectory — the Dishmatic family already exceeds 60% recycled raw material content.`,
+        moreInfo: `The original Dishmatic sits in the Design Museum's permanent collection in the British Favourites display. Over four million handles produced yearly by EasyDo (now Libman Brands), stocked across the world including the United States and Australia.`,
+        links: [
+          { label: 'Dishmatic', url: 'https://www.dishmatic.com/' },
+          { label: 'Libman', url: 'https://www.libman.com/products/dishmatic-dish-wand' },
+          { label: 'Shop', url: 'https://shop.dishmatic.com/collections/all-products' }
+        ]
+      },
+      {
+        slug: 'taur-scooter',
+        title: 'Taur Scooter',
+        navDesc: 'The Scooter Built for the City',
+        cardText: 'Forward-facing e-scooter that made stability an industry standard. Red Dot and Good Design 2021.',
+        aboutProject: `Taur arrived as a functional prototype — two wheels, welded pipes, a motor and battery cells. Our role was to turn it into a confident, road-ready product. The defining move: a forward-facing foot platform giving riders a stable, natural stance, since adopted across the industry. Lean, intense design sprints — sketching, CAD, CMF detailing and visualisation — considered manufacturing constraints from day one, handing engineering a smooth path to production. The result is robust, characteristic, and recognisable from a distance.`,
+        moreInfo: `Good Design Award 2021 and Green Good Design Award 2021 winner. Fully funded on Kickstarter in 3 days (£253k from 318 backers); over £1M raised in seed funding. First full review by Rider Guide; Taur II campaign raised a further $280k.`,
+        links: [
+          { label: 'Taur', url: 'https://taur.com/' },
+          { label: 'Red Dot', url: 'https://www.red-dot.org/de/project/taur-the-electric-road-scooter-60099' },
+          { label: 'Good Design Award', url: 'https://www.chi-athenaeum.org/good-design-awards-transportation-2022/2022/12/13/taur-the-electric-road-scooter-2022/' },
+          { label: 'Global Design News', url: 'https://globaldesignnews.com/carson-brown-designs-the-first-high-performance-electric-scooter-designed-for-life-on-the-road/' },
+          { label: 'Kickstarter', url: 'https://www.kickstarter.com/projects/taur/taur-the-electric-road-scooter' },
+          { label: 'Rider Guide', url: 'https://riderguide.com/reviews/taur-electric-scooter-review/' },
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=D4zqvhKPekM' }
+        ]
+      },
+      {
+        slug: 'sensate-1',
+        title: 'Sensate 1',
+        navDesc: 'Infrasonic Calm, By Design',
+        cardText: 'A pebble-inspired infrasonic device that tones the vagus nerve through bone conduction.',
+        aboutProject: `How should technology that calms you look and feel? Sensate transduces low-frequency sound through the sternum to stimulate the vagus nerve, easing the nervous system from high alert into rest. Through iterative design sprints with Thrive Wearables we explored dozens of form factors, landing on a shape inspired by the pebbles of Brighton's beaches — nature's own lesson in calm through simplicity. The soft, weighted form invites placement on the chest, while discreet proportions keep this piece of medical-grade tech quietly personal.`,
+        moreInfo: `Funded 300%+ on Indiegogo; featured in Vogue and The Times, and named The Times Health Tech Invention of the Year. Studies show a 48% stress reduction within 28 days and up to an hour of extra sleep per night. Now in its second generation.`,
+        links: [
+          { label: 'Sensate', url: 'https://www.getsensate.com/' },
+          { label: 'Indiegogo', url: 'https://www.indiegogo.com/projects/sensate-the-shortcut-to-reduce-stress-and-anxiety' },
+          { label: 'How Does It Work?', url: 'https://www.youtube.com/watch?v=dgiREGtnv2c' },
+          { label: 'Ben Greenfield', url: 'https://bengreenfieldlife.com/ben-recommends/sensate/' },
+          { label: 'Dave Asprey', url: 'https://daveaspreybox.com/your-vagus-nerve/' }
+        ]
+      }
+    ];
+
+    const SLIDE_COUNT = 10;          // images/slideshow/slide-01.jpg … slide-10.jpg
+    const SLIDE_INTERVAL = 1800;     // ms between slides
+
+    /* ── BUILD NAVIGATOR ── */
+    const navList = document.getElementById('nav-list');
+
+    // About item first (title with crossed-out "us")
+    navList.insertAdjacentHTML('beforeend', `
+      <a class="nav-item" href="#about" data-route="about">
+        <img class="nav-item__thumb" src="images/about/thumb.jpg" alt="">
+        <span class="nav-item__text">
+          <span class="nav-item__title">About <s>us</s> me</span>
+          <span class="nav-item__desc">The Maker Behind the Department</span>
+        </span>
+      </a>`);
+
+    PROJECTS.forEach(p => {
+      navList.insertAdjacentHTML('beforeend', `
+        <a class="nav-item" href="#${p.slug}" data-route="${p.slug}">
+          <img class="nav-item__thumb" src="images/projects/${p.slug}/thumb.jpg" alt="">
+          <span class="nav-item__text">
+            <span class="nav-item__title">${p.title}</span>
+            <span class="nav-item__desc">${p.navDesc}</span>
+          </span>
+        </a>`);
+    });
+
+    /* ── BUILD HOME CARDS (no card for About) ── */
+    const cards = document.getElementById('cards');
+    PROJECTS.forEach(p => {
+      cards.insertAdjacentHTML('beforeend', `
+        <a class="card" href="#${p.slug}">
+          <img class="card__img" src="images/projects/${p.slug}/card.jpg" alt="${p.title}">
+          <span class="card__title">${p.title}</span>
+          <span class="card__text">${p.cardText}</span>
+        </a>`);
+    });
+
+    /* ── BUILD PROJECT VIEWS ── */
+    const projectViews = document.getElementById('project-views');
+    PROJECTS.forEach(p => {
+      const media = p.video
+        ? `<div class="project__video">
+             <iframe src="https://www.youtube-nocookie.com/embed/${p.video}?rel=0"
+                     title="${p.title}" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                     allowfullscreen></iframe>
+           </div>`
+        : `<img class="project__hero" src="images/projects/${p.slug}/hero.jpg" alt="${p.title}">`;
+
+      const links = (p.links && p.links.length)
+        ? `<div class="panel__links">${p.links.map(l =>
+            `<a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label} &#8599;</a>`).join('')}</div>`
+        : '';
+
+      projectViews.insertAdjacentHTML('beforeend', `
+        <section class="view" id="view-${p.slug}">
+          ${media}
+          <h1 class="project__title">${p.title}</h1>
+          <div class="panels">
+            <div class="panel">
+              <span class="panel__label">About the project</span>
+              <p class="panel__body">${p.aboutProject}</p>
+            </div>
+            <div class="panel">
+              <span class="panel__label">More information</span>
+              <p class="panel__body">${p.moreInfo}</p>
+              ${links}
+            </div>
+          </div>
+        </section>`);
+    });
+
+    /* ── BUILD SLIDESHOW ── */
+    const slideshow = document.getElementById('slideshow');
+    const counter = document.getElementById('slide-counter');
+    for (let i = 1; i <= SLIDE_COUNT; i++) {
+      const img = document.createElement('img');
+      img.src = `images/slideshow/slide-${String(i).padStart(2, '0')}.jpg`;
+      img.alt = '';
+      if (i === 1) img.classList.add('is-showing');
+      slideshow.insertBefore(img, counter);
+    }
+    const slides = slideshow.querySelectorAll('img');
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('is-showing');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('is-showing');
+      counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+    }, SLIDE_INTERVAL);
+
+    /* ── HASH ROUTING — navigator stays on, right side swaps ── */
+    const validRoutes = new Set(['about', ...PROJECTS.map(p => p.slug)]);
+
+    function route() {
+      const hash = location.hash.replace('#', '');
+      const target = validRoutes.has(hash) ? hash : 'home';
+
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('is-visible'));
+      const view = document.getElementById(`view-${target}`);
+      (view || document.getElementById('view-home')).classList.add('is-visible');
+
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.toggle('is-active', item.dataset.route === target);
+      });
+
+      window.scrollTo(0, 0);
+    }
+
+    window.addEventListener('hashchange', route);
+    route();
+
+    /* ── LIVE DATE (Lisbon time) ── */
+    function updateDate() {
+      const now = new Date();
+      const opts = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Europe/Lisbon' };
+      const time = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe
