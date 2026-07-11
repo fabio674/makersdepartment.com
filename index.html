@@ -217,11 +217,22 @@
 
   /* ── MOBILE ── */
   @media (max-width: 600px) {
+    html, body { height: auto; }
+    body {
+      overflow: visible;
+      min-height: 100vh;
+      min-height: 100svh;
+      justify-content: flex-start;
+      padding-top: 18vw;
+      padding-bottom: 8vw;
+    }
     .logo__makers {
       font-size: clamp(60px, 15.5vw, 15.5vw);
     }
-    .meta-top .meta-label:first-child {
-      content: 'Founded London · Lisbon';
+    .meta-bottom {
+      position: static;
+      margin-top: 14vw;
+      align-items: center;
     }
   }
 </style>
