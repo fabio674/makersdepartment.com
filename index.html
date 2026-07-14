@@ -5,13 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Makers Department | Industrial Design Consultancy</title>
 <meta name="description" content="Makers Department is a founder-friendly industrial design consultancy. We help engineering-led hardware teams in IoT, medtech, robotics and consumer electronics go from working prototype to market-ready product.">
-<link rel="icon" href="favicon.ico" sizes="48x48">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;1,900&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
- <script defer src="https://cloud.umami.is/script.js" data-website-id="c7c45a31-1894-4024-971e-aa3c5f89ec3b"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -157,13 +152,16 @@
     gap: 12px;
   }
 
+  /* nav + email stacked bottom-left */
   .meta-bottom__left {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: flex-start;
   }
 
-  .meta-bottom__work {
+  .site-nav { display: flex; gap: 1.5vw; }
+  .site-nav a {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
@@ -174,9 +172,8 @@
     border: none;
     padding: 0;
     transition: color 0.2s;
-    align-self: flex-start;
   }
-  .meta-bottom__work:hover { color: #7B2FFF; border: none; }
+  .site-nav a:hover { color: #7B2FFF; border: none; }
 
   .meta-bottom__email {
     font-family: 'Barlow Condensed', sans-serif;
@@ -218,22 +215,11 @@
 
   /* ── MOBILE ── */
   @media (max-width: 600px) {
-    html, body { height: auto; }
-    body {
-      overflow: visible;
-      min-height: 100vh;
-      min-height: 100svh;
-      justify-content: flex-start;
-      padding-top: 18vw;
-      padding-bottom: 8vw;
-    }
     .logo__makers {
       font-size: clamp(60px, 15.5vw, 15.5vw);
     }
-    .meta-bottom {
-      position: static;
-      margin-top: 14vw;
-      align-items: center;
+    .meta-top .meta-label:first-child {
+      content: 'Founded London · Lisbon';
     }
   }
 </style>
@@ -269,8 +255,6 @@
     <a href="mailto:makersdepartment@gmail.com">email us</a>
     <span> or </span>
     <a href="https://calendar.app.google/BX7oAqHSHxMpu7866" target="_blank" rel="noopener noreferrer">request a brief call</a>
-    <span> or </span>
-    <a href="https://wa.me/447541904649?text=Hi%2C%20I%27d%20like%20a%20short%20chat%20about%20a%20project." target="_blank" rel="noopener noreferrer">WhatsApp us</a>
     <span>.</span>
     <br>
     <span>For more — follow us on </span>
@@ -283,7 +267,10 @@
   <!-- BOTTOM ROW -->
   <div class="meta-bottom">
     <div class="meta-bottom__left">
-      <a href="work.html" class="meta-bottom__work">Latest Work</a>
+      <nav class="site-nav">
+        <a href="work.html">Latest Work</a>
+        <a href="sourcing.html">Portugal Sourcing</a>
+      </nav>
       <a href="mailto:makersdepartment@gmail.com" class="meta-bottom__email">makersdepartment@gmail.com</a>
     </div>
     <div class="meta-bottom__right">
