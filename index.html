@@ -213,13 +213,22 @@
     color: #2A2530;
   }
 
-  /* ── MOBILE ── */
+/* ── MOBILE ── */
   @media (max-width: 600px) {
-    .logo__makers {
-      font-size: clamp(60px, 15.5vw, 15.5vw);
+    html, body { height: auto; }
+    body {
+      overflow: visible;
+      min-height: 100vh;
+      justify-content: flex-start;
+      padding-top: 20vw;
+      padding-bottom: 8vw;
     }
-    .meta-top .meta-label:first-child {
-      content: 'Founded London · Lisbon';
+    .meta-bottom {
+      position: static;
+      margin-top: 14vw;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
     }
   }
 </style>
