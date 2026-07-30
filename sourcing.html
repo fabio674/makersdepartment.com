@@ -49,7 +49,11 @@
   /* ── TOP BAR ── */
   header {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 2.4vw 6vw; position: relative; z-index: 5;
+    padding: 1.4vw 6vw; position: sticky; top: 0; z-index: 50;
+    background: rgba(13,12,16,0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
   }
   /* exact lockup from work.html */
   .side-logo { display: inline-block; text-decoration: none; }
@@ -66,12 +70,34 @@
     font-family: 'Barlow Condensed', sans-serif; font-weight: 700; text-transform: uppercase;
     font-size: 11px; letter-spacing: 0.35em; color: var(--accent); white-space: nowrap; flex-shrink: 0;
   }
+  header .side-logo__makers { font-size: 24px; }
+  header .side-logo__rule-row { margin-top: 3px; }
+  header .side-logo__dept { font-size: 9px; }
+
   .header__meta {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.22em;
-    font-size: clamp(8px, 0.9vw, 11px); color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 2.2rem;
   }
-  .header__meta a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
+  .header__meta a {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    font-size: 15px; color: var(--muted);
+    text-decoration: none; border: none; padding: 8px 2px;
+    position: relative; transition: color 0.2s;
+  }
+  .header__meta a:hover { color: var(--ink); }
+  .header__meta a.is-current { color: var(--accent); }
+  .header__meta a.is-current::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+    height: 2px; background: var(--accent);
+  }
+
+  .nav-toggle {
+    display: none; background: none; border: none; color: var(--ink);
+    width: 40px; height: 40px; align-items: center; justify-content: center; cursor: pointer;
+  }
+  .nav-toggle svg { width: 22px; height: 22px; }
 
   /* ── HERO ── */
   .hero { padding: 8vw 0 6vw; position: relative; }
@@ -189,10 +215,22 @@
   @media (max-width: 760px) {
     .stats, .steps { grid-template-columns: repeat(2, 1fr); gap: 6vw 4vw; }
     .pillars { grid-template-columns: 1fr; }
-    .header__meta { display: none; }
     .hero { padding: 14vw 0 10vw; }
     section { padding: 12vw 0; }
     .pillar { padding: 8vw 6vw; }
+
+    .header__meta {
+      position: fixed; top: 62px; left: 0; right: 0;
+      background: var(--bg-soft); border-bottom: 1px solid var(--line);
+      flex-direction: column; align-items: flex-start; gap: 0;
+      padding: 8px 6vw 18px;
+      transform: translateY(-8px); opacity: 0; pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .header__meta.is-open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .header__meta a { width: 100%; padding: 14px 0; font-size: 18px; border-bottom: 1px solid var(--line); }
+    .header__meta a:last-child { border-bottom: none; }
+    .nav-toggle { display: flex; }
   }
 </style>
 </head>
@@ -207,7 +245,19 @@
       <span class="side-logo__rule side-logo__rule--right"></span>
     </div>
   </a>
-  <nav class="header__meta"><a href="index.html">Intro</a> &nbsp;·&nbsp; <a href="work.html">Work</a> &nbsp;·&nbsp; <span style="color:var(--accent)">Sourcing</span></nav>
+  <nav class="header__meta" id="site-nav">
+    <a href="index.html">Intro</a>
+    <a href="work.html">Work</a>
+    <a href="sourcing.html" class="is-current">Sourcing</a>
+    <a href="ai-campaigns.html">AI Campaigns</a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </button>
 </header>
 
 <main class="wrap">
@@ -334,6 +384,15 @@
     <a href="index.html">Intro</a>
   </div>
 </footer>
+
+<script>
+  const navToggle = document.getElementById('nav-toggle');
+  const siteNav = document.getElementById('site-nav');
+  navToggle.addEventListener('click', () => {
+    const open = siteNav.classList.toggle('is-open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+</script>
 
 </body>
 </html>

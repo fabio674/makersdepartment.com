@@ -25,7 +25,53 @@
     --dim: #3A3545;
     --mid: #555060;
     --faint: #2A2530;
+    --topbar-h: 60px;
   }
+
+  /* ════════ SITE TOPBAR (shared across pages) ════════ */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--topbar-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    background: rgba(13,12,16,0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .site-header .side-logo__makers { font-size: 22px; }
+  .site-header .side-logo__rule-row { margin-top: 3px; }
+  .site-header .side-logo__dept { font-size: 9px; }
+
+  .site-nav { display: flex; align-items: center; gap: 2.2rem; }
+  .site-nav a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 15px;
+    color: var(--mid);
+    text-decoration: none;
+    padding: 8px 2px;
+    position: relative;
+    transition: color 0.2s;
+  }
+  .site-nav a:hover { color: var(--raw-white); }
+  .site-nav a.is-current { color: var(--maker-violet); }
+  .site-nav a.is-current::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+    height: 2px; background: var(--maker-violet);
+  }
+
+  .nav-toggle {
+    display: none; background: none; border: none; color: var(--raw-white);
+    width: 40px; height: 40px; align-items: center; justify-content: center; cursor: pointer;
+  }
+  .nav-toggle svg { width: 22px; height: 22px; }
 
   html, body { width: 100%; min-height: 100vh; }
 
@@ -40,9 +86,9 @@
   /* ════════ LAYOUT ════════ */
   .sidebar {
     position: fixed;
-    top: 0; left: 0; bottom: 0;
+    top: var(--topbar-h); left: 0; bottom: 0;
     width: 320px;
-    padding: 36px 28px 28px 32px;
+    padding: 28px 28px 28px 32px;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -403,16 +449,27 @@
     .cards { grid-template-columns: 1fr; }
     .panels { grid-template-columns: 1fr; }
     .side-foot { margin-top: 20px; flex-direction: row; justify-content: space-between; }
+
+    .site-nav {
+      position: fixed; top: var(--topbar-h); left: 0; right: 0;
+      background: var(--panel); border-bottom: 1px solid var(--line);
+      flex-direction: column; align-items: flex-start; gap: 0;
+      padding: 8px 24px 18px;
+      transform: translateY(-8px); opacity: 0; pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .site-nav.is-open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .site-nav a { width: 100%; padding: 14px 0; font-size: 18px; border-bottom: 1px solid var(--line); }
+    .site-nav a:last-child { border-bottom: none; }
+    .nav-toggle { display: flex; }
   }
 </style>
 </head>
 <body>
 
-  <!-- ════════════════ SIDEBAR (always on) ════════════════ -->
-  <aside class="sidebar">
-
-    <!-- LOGO — PLACEHOLDER, to be reviewed/replaced by Fabio -->
-    <a class="side-logo" href="#" aria-label="Makers Department — latest work home">
+  <!-- ════════════════ SITE TOPBAR (shared across pages) ════════════════ -->
+  <header class="site-header">
+    <a class="side-logo" href="index.html" aria-label="Makers Department — home">
       <span class="side-logo__makers">Makers</span>
       <div class="side-logo__rule-row">
         <div class="side-logo__rule side-logo__rule--left"></div>
@@ -420,6 +477,23 @@
         <div class="side-logo__rule side-logo__rule--right"></div>
       </div>
     </a>
+    <nav class="site-nav" id="site-nav">
+      <a href="index.html">Intro</a>
+      <a href="work.html" class="is-current">Work</a>
+      <a href="sourcing.html">Sourcing</a>
+      <a href="ai-campaigns.html">AI Campaigns</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </header>
+
+  <!-- ════════════════ SIDEBAR (always on) ════════════════ -->
+  <aside class="sidebar">
 
     <!-- DATE / LOCATION -->
     <div class="side-meta">
@@ -433,8 +507,6 @@
 
     <!-- FOOT -->
     <div class="side-foot">
-      <a class="side-foot__intro" href="index.html">&larr; Intro</a>
-      <a class="side-foot__intro" href="sourcing.html">Portugal Sourcing &rarr;</a>
       <a class="side-foot__intro" href="https://wa.me/447541904649?text=Hi%2C%20I%27d%20like%20a%20short%20chat%20about%20a%20project." target="_blank" rel="noopener noreferrer">WhatsApp — a short chat</a>
       <a class="side-foot__email" href="mailto:makersdepartment@gmail.com">makersdepartment@gmail.com</a>
     </div>
@@ -739,6 +811,14 @@
     }
     updateDate();
     setInterval(updateDate, 30000);
+
+    /* ── NAV TOGGLE (mobile) ── */
+    const navToggle = document.getElementById('nav-toggle');
+    const siteNav = document.getElementById('site-nav');
+    navToggle.addEventListener('click', () => {
+      const open = siteNav.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', open);
+    });
   </script>
 
 </body>

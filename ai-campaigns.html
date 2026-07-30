@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Campaigns | Makers Department</title>
+<meta name="description" content="We don't generate your content — we build the system your marketing team uses to generate it themselves. A bespoke AI content framework built around your brand, budget and team.">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0D0C10;
+    --bg-soft: #131118;
+    --ink: #F5F2EE;
+    --muted: #8A8494;
+    --faint: #3A3545;
+    --line: #1E1A28;
+    --accent: #7B2FFF;
+    --topbar-h: 60px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 6vw; }
+
+  .label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: clamp(10px, 1vw, 12px);
+    color: var(--accent);
+  }
+  .label--muted { color: var(--faint); }
+
+  /* ── TOP BAR (shared component — identical markup/CSS to work.html / sourcing.html) ── */
+  header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 6vw; height: var(--topbar-h); position: sticky; top: 0; z-index: 50;
+    background: rgba(13,12,16,0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .side-logo { display: inline-block; text-decoration: none; }
+  .side-logo__makers {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-style: italic;
+    text-transform: uppercase; font-size: 22px; line-height: 0.88;
+    letter-spacing: -0.03em; color: var(--ink); display: block;
+  }
+  .side-logo__rule-row { display: flex; align-items: center; gap: 6px; margin-top: 3px; }
+  .side-logo__rule { height: 2px; background-color: var(--accent); }
+  .side-logo__rule--left { width: 14px; }
+  .side-logo__dept {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; text-transform: uppercase;
+    font-size: 9px; letter-spacing: 0.35em; color: var(--accent); white-space: nowrap;
+  }
+  .site-nav { display: flex; align-items: center; gap: 2.2rem; }
+  .site-nav a {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    font-size: 15px; color: var(--muted);
+    text-decoration: none; padding: 8px 2px;
+    position: relative; transition: color 0.2s;
+  }
+  .site-nav a:hover { color: var(--ink); }
+  .site-nav a.is-current { color: var(--accent); }
+  .site-nav a.is-current::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+    height: 2px; background: var(--accent);
+  }
+  .nav-toggle {
+    display: none; background: none; border: none; color: var(--ink);
+    width: 40px; height: 40px; align-items: center; justify-content: center; cursor: pointer;
+  }
+  .nav-toggle svg { width: 22px; height: 22px; }
+
+  /* ── PLACEHOLDER MEDIA BLOCKS ── */
+  .placeholder {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; text-align: center;
+    background: repeating-linear-gradient(135deg, var(--bg-soft), var(--bg-soft) 10px, #17141d 10px, #17141d 20px);
+    border: 1px dashed var(--line);
+    border-radius: 4px;
+    color: var(--muted);
+    padding: 2em;
+  }
+  .placeholder__icon { font-size: 22px; color: var(--faint); }
+  .placeholder__label {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; color: var(--ink);
+  }
+  .placeholder__spec {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px;
+    letter-spacing: 0.05em; color: var(--muted); max-width: 30ch;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 86vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 0 6vw;
+    overflow: hidden;
+  }
+  .hero__media {
+    position: absolute; inset: 0;
+    z-index: 0;
+  }
+  .hero__media .placeholder { height: 100%; border: none; border-radius: 0; }
+  .hero__scrim {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(13,12,16,0.15) 0%, rgba(13,12,16,0.55) 60%, rgba(13,12,16,0.92) 100%);
+  }
+  .hero__content { position: relative; z-index: 2; max-width: 720px; }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-style: italic;
+    font-size: clamp(38px, 6vw, 68px);
+    line-height: 0.98;
+    letter-spacing: -0.01em;
+    margin: 1vw 0 1.2vw;
+  }
+  .hero__sub {
+    font-size: clamp(15px, 1.6vw, 19px);
+    color: var(--ink);
+    opacity: 0.85;
+    max-width: 52ch;
+    margin-bottom: 2.2em;
+    font-weight: 300;
+  }
+
+  /* ── BUTTON (shared with sourcing.html) ── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.7em;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    font-size: clamp(13px, 1.3vw, 16px);
+    background: var(--accent); color: #fff; text-decoration: none;
+    padding: 0.95em 1.8em; border-radius: 2px;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+    box-shadow: 0 8px 30px rgba(123,47,255,0.28);
+    border: none; cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-2px); background: #8c47ff; box-shadow: 0 12px 40px rgba(123,47,255,0.4); }
+  .btn__arrow { font-size: 1.1em; }
+
+  /* ── INTRO ── */
+  .intro { padding: 7vw 0 5vw; }
+  .intro .label { margin-bottom: 1.4vw; }
+  .intro p {
+    font-size: clamp(16px, 1.7vw, 21px);
+    max-width: 62ch;
+    font-weight: 300;
+    color: var(--ink);
+  }
+  .intro p strong { font-weight: 600; color: var(--ink); }
+
+  /* ── HOW IT WORKS (shared pattern with sourcing.html) ── */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2vw; }
+  .step { border-top: 2px solid var(--accent); padding-top: 1.2em; }
+  .step__no { font-family:'Barlow Condensed',sans-serif; font-weight:700; color: var(--muted); letter-spacing:0.2em; font-size: 12px; }
+  .step h4 { font-weight: 600; font-size: clamp(16px,1.5vw,19px); margin: 0.4em 0 0.4em; }
+  .step p { color: var(--muted); font-weight: 300; font-size: clamp(13px,1.05vw,15px); }
+
+  /* ── THE POINT (callout) ── */
+  .point {
+    border-left: 2px solid var(--accent);
+    padding: 0.2em 0 0.2em 1.6em;
+    margin: 6vw 0;
+  }
+  .point p {
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 300;
+    color: var(--ink);
+    max-width: 46ch;
+  }
+  .point p strong { font-weight: 600; }
+
+  /* ── EXAMPLES GRID ── */
+  .examples { padding: 3vw 0 8vw; }
+  .examples .label { margin-bottom: 0.6vw; }
+  .examples h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(24px, 3vw, 38px);
+    max-width: 20ch;
+    margin-bottom: 2.4vw;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4vw;
+  }
+  .grid__item {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .grid__item .placeholder { height: 100%; }
+  .grid__item--tall { grid-row: span 2; aspect-ratio: 4 / 6; }
+
+  /* ── CTA BAND ── */
+  .cta-band {
+    padding: 7vw 0;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+  .cta-band .label { margin-bottom: 1vw; }
+  .cta-band h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(22px, 2.6vw, 32px);
+    max-width: 34ch;
+    margin: 0 auto 1.8vw;
+  }
+
+  /* ── FOOTER (shared pattern) ── */
+  footer {
+    padding: 4vw 6vw 5vw;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 16px;
+    border-top: 1px solid var(--line);
+  }
+  footer .label { color: var(--faint); }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 1.4em; }
+  .foot-links a {
+    color: var(--muted); text-decoration: none;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px;
+    transition: color 0.15s ease;
+  }
+  .foot-links a:hover { color: var(--accent); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .grid__item--tall { grid-row: span 1; aspect-ratio: 4 / 3; }
+    .steps { grid-template-columns: repeat(2, 1fr); gap: 6vw 4vw; }
+  }
+
+  @media (max-width: 760px) {
+    .grid { grid-template-columns: 1fr; }
+    .hero { min-height: 78vh; }
+
+    .site-nav {
+      position: fixed; top: var(--topbar-h); left: 0; right: 0;
+      background: var(--bg-soft); border-bottom: 1px solid var(--line);
+      flex-direction: column; align-items: flex-start; gap: 0;
+      padding: 8px 6vw 18px;
+      transform: translateY(-8px); opacity: 0; pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .site-nav.is-open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .site-nav a { width: 100%; padding: 14px 0; font-size: 18px; border-bottom: 1px solid var(--line); }
+    .site-nav a:last-child { border-bottom: none; }
+    .nav-toggle { display: flex; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="side-logo" href="index.html">
+    <span class="side-logo__makers">Makers</span>
+    <div class="side-logo__rule-row">
+      <span class="side-logo__rule side-logo__rule--left"></span>
+      <span class="side-logo__dept">Department</span>
+    </div>
+  </a>
+  <nav class="site-nav" id="site-nav">
+    <a href="index.html">Intro</a>
+    <a href="work.html">Work</a>
+    <a href="sourcing.html">Sourcing</a>
+    <a href="ai-campaigns.html" class="is-current">AI Campaigns</a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </button>
+</header>
+
+<main>
+
+  <!-- ══════════════════════════════════════════════
+       HERO
+       Replace .hero__media placeholder with:
+       <video class="hero__media" autoplay muted loop playsinline poster="images/campaigns/hero-poster.webp">
+         <source src="images/campaigns/hero-loop.webm" type="video/webm">
+         <source src="images/campaigns/hero-loop.mp4" type="video/mp4">
+       </video>
+       Spec: 1920x1080 (or 2560x1440), 5–10s seamless loop, no audio track,
+       CRF 23–28, under ~6MB. Ship a poster frame (WebP/JPG) for instant paint.
+       ══════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero__media">
+      <video autoplay muted loop playsinline poster="images/campaigns/hero-poster.webp" style="width:100%; height:100%; object-fit:cover;">
+        <source src="images/campaigns/hero-loop.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero__scrim"></div>
+    <div class="wrap hero__content">
+      <div class="label">AI Campaigns</div>
+      <h1>Build your team's content engine</h1>
+      <p class="hero__sub">We don't generate your content. We build the system your marketing team uses to generate it themselves — bespoke to your brand, your budget, and the people you already have.</p>
+      <a class="btn" href="https://forms.gle/dDkDPLBRn5X9ykDu6" target="_blank" rel="noopener noreferrer">Register interest <span class="btn__arrow">→</span></a>
+    </div>
+  </section>
+
+  <div class="wrap">
+
+    <!-- ══════════════════════════════════════════════
+         INTRO — reuse existing copy, keep to 2–3 sentences
+         ══════════════════════════════════════════════ -->
+    <section class="intro">
+      <div class="label">What it is</div>
+      <p>
+        AI tools can produce campaign-grade visuals and content, but a marketing
+        team dropped in front of them without a system gets inconsistency,
+        wasted spend, and output that doesn't hold to the brand. <strong>AI
+        Campaigns fixes that.</strong> We design a framework built around your
+        reality — your existing assets, your monthly budget, your team's
+        skills, and the tools that actually fit — so your team can produce
+        work consistently, on-brand, and in-house, for the medium and long
+        term.
+      </p>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         HOW IT WORKS
+         ══════════════════════════════════════════════ -->
+    <section class="intro" style="padding-top: 0;">
+      <div class="label label--muted">How it works</div>
+      <div class="steps" style="margin-top: 1.6vw;">
+        <div class="step">
+          <div class="step__no">01</div>
+          <h4>Assessment</h4>
+          <p>We start by understanding where you are — auditing your current assets and content, and mapping your monthly budget and spend. The system has to fit the business as it is, not an idealised version of it.</p>
+        </div>
+        <div class="step">
+          <div class="step__no">02</div>
+          <h4>Workshop</h4>
+          <p>We sit down with your marketing team and build the framework together: the tools, the workflow, the guardrails, and the standards that keep output consistent. It's designed with your people, so they own it.</p>
+        </div>
+        <div class="step">
+          <div class="step__no">03</div>
+          <h4>The system</h4>
+          <p>You come away with a bespoke, repeatable framework your team can run themselves — tailored to your budget and built to stay consistent over time, not a one-off campaign.</p>
+        </div>
+        <div class="step">
+          <div class="step__no">04</div>
+          <h4>Ongoing support</h4>
+          <p>The tools and models don't stand still, so neither do we. We review how the system is working, refine it, and keep it current as the technology evolves — so your team stays ahead instead of falling behind.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         THE POINT
+         ══════════════════════════════════════════════ -->
+    <section class="point">
+      <p><strong>You end up with capability, not a dependency.</strong> Your team can generate their own content — faster, cheaper, and on-brand — with a system that improves as the tools do.</p>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         EXAMPLES GRID — reframed as proof of what the system enables
+         (not deliverables Makers Department produces for the client —
+         keep this framing so it doesn't contradict "we don't generate
+         your content" above)
+         Each .grid__item placeholder becomes either:
+         <img src="images/campaigns/example-01.webp" alt="…">
+         or, for motion pieces:
+         <video muted loop playsinline poster="images/campaigns/example-03-poster.webp" onmouseenter="this.play()" onmouseleave="this.pause()">
+           <source src="images/campaigns/example-03.webm" type="video/webm">
+           <source src="images/campaigns/example-03.mp4" type="video/mp4">
+         </video>
+         Image spec: 1600–2000px wide, WebP (JPG fallback), consistent aspect ratio per row.
+         Video spec: 3–6s clips, muted, hover-to-play, same MP4+WebM pairing as hero but more compressed.
+         Swap grid__item--tall onto any 2 tiles to break up the rhythm — matches the "big, quality over
+         quantity" brief. Aim for 6–9 tiles total; this mock shows 7 (2 tall + 5 standard).
+         ══════════════════════════════════════════════ -->
+    <section class="examples">
+      <div class="label">What can be done</div>
+      <h2>What the system makes possible, once it's built.</h2>
+      <div class="grid">
+        <div class="grid__item grid__item--tall">
+          <video muted loop playsinline poster="images/campaigns/tile-1-video-poster.webp" onmouseenter="this.play()" onmouseleave="this.pause()" style="width:100%; height:100%; object-fit:cover;">
+            <source src="images/campaigns/tile-1-video.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="grid__item">
+          <img src="images/campaigns/tile-2-image.webp" alt="" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="grid__item">
+          <img src="images/campaigns/tile-3-image.webp" alt="" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="grid__item grid__item--tall">
+          <video muted loop playsinline poster="images/campaigns/tile-4-video-poster.webp" onmouseenter="this.play()" onmouseleave="this.pause()" style="width:100%; height:100%; object-fit:cover;">
+            <source src="images/campaigns/tile-4-video.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="grid__item">
+          <img src="images/campaigns/tile-5-image.webp" alt="" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="grid__item">
+          <img src="images/campaigns/tile-6-image.webp" alt="" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="grid__item">
+          <img src="images/campaigns/tile-7-image.webp" alt="" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         CTA BAND — repeats the ask near the bottom
+         ══════════════════════════════════════════════ -->
+    <section class="cta-band">
+      <div class="label">Register your interest</div>
+      <h2>Interested? Register your interest and I'll be in touch.</h2>
+      <a class="btn" href="https://forms.gle/dDkDPLBRn5X9ykDu6" target="_blank" rel="noopener noreferrer">Register interest <span class="btn__arrow">→</span></a>
+    </section>
+
+  </div>
+
+</main>
+
+<footer>
+  <div class="label">Makers Department — Lisbon, sometimes London</div>
+  <div class="foot-links">
+    <a href="mailto:makersdepartment@gmail.com">Email</a>
+    <a href="https://calendar.app.google/BX7oAqHSHxMpu7866">Book a call</a>
+    <a href="https://wa.me/447541904649?text=Hi%2C%20I%27d%20like%20a%20short%20chat%20about%20AI%20campaign%20visuals.">WhatsApp</a>
+    <a href="https://www.linkedin.com/company/10312547/">LinkedIn</a>
+    <a href="work.html">Latest Work</a>
+    <a href="index.html">Intro</a>
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('nav-toggle');
+  const siteNav = document.getElementById('site-nav');
+  navToggle.addEventListener('click', () => {
+    const open = siteNav.classList.toggle('is-open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+</script>
+
+</body>
+</html>
