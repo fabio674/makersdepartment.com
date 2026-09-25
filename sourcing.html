@@ -7,18 +7,18 @@
 <meta name="description" content="Nearshore your production to Portugal with a partner on the ground. Makers Department handles tooling, suppliers, samples and production end to end — closer to your market, on a clean grid.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0D0C10;
-    --bg-soft: #131118;
-    --ink: #F5F2EE;
-    --muted: #8A8494;
-    --faint: #3A3545;
-    --line: #1E1A28;
-    --accent: #7B2FFF;
+    --bg: #000000;
+    --bg-soft: #141414;
+    --ink: #FFFFFF;
+    --muted: #A3A3A3;
+    --faint: #8A8A8A;
+    --line: #2A2A2A;
+    --accent: #3DF2B8;
   }
 
   html { scroll-behavior: smooth; }
@@ -26,7 +26,7 @@
   body {
     background-color: var(--bg);
     color: var(--ink);
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-weight: 400;
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
@@ -37,10 +37,10 @@
 
   /* labels */
   .label {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.28em;
+    text-transform: none;
+    letter-spacing: 0.01em;
     font-size: clamp(10px, 1vw, 12px);
     color: var(--accent);
   }
@@ -50,7 +50,7 @@
   header {
     display: flex; justify-content: space-between; align-items: center;
     padding: 1.4vw 6vw; position: sticky; top: 0; z-index: 50;
-    background: rgba(13,12,16,0.88);
+    background: rgba(0,0,0,0.88);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
@@ -58,8 +58,8 @@
   /* exact lockup from work.html */
   .side-logo { display: inline-block; text-decoration: none; }
   .side-logo__makers {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-style: italic;
-    text-transform: uppercase; font-size: clamp(30px, 4vw, 44px); line-height: 0.88;
+    font-family: 'Geist', sans-serif; font-weight: 700;
+    text-transform: none; font-size: clamp(30px, 4vw, 44px); line-height: 0.88;
     letter-spacing: -0.03em; color: var(--ink); display: block;
   }
   .side-logo__rule-row { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
@@ -67,8 +67,8 @@
   .side-logo__rule--left { flex: 1 1 0; min-width: 0; }
   .side-logo__rule--right { width: 12px; flex-shrink: 0; }
   .side-logo__dept {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; text-transform: uppercase;
-    font-size: 11px; letter-spacing: 0.35em; color: var(--accent); white-space: nowrap; flex-shrink: 0;
+    font-family: 'Geist', sans-serif; font-weight: 700; text-transform: none;
+    font-size: 11px; letter-spacing: 0.01em; color: var(--accent); white-space: nowrap; flex-shrink: 0;
   }
   header .side-logo__makers { font-size: 24px; }
   header .side-logo__rule-row { margin-top: 3px; }
@@ -80,8 +80,8 @@
     gap: 2.2rem;
   }
   .header__meta a {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.14em;
+    font-family: 'Geist', sans-serif; font-weight: 700;
+    text-transform: none; letter-spacing: 0.01em;
     font-size: 15px; color: var(--muted);
     text-decoration: none; border: none; padding: 8px 2px;
     position: relative; transition: color 0.2s;
@@ -104,24 +104,24 @@
   .hero::before {
     content: ""; position: absolute; top: -20%; right: -10%;
     width: 60vw; height: 60vw; max-width: 720px; max-height: 720px;
-    background: radial-gradient(circle, rgba(123,47,255,0.16) 0%, rgba(123,47,255,0) 62%);
+    background: radial-gradient(circle, rgba(61,242,184,0.16) 0%, rgba(61,242,184,0) 62%);
     pointer-events: none; z-index: 0;
   }
   .hero > * { position: relative; z-index: 1; }
   .hero .label { margin-bottom: 1.6vw; }
   .hero h1 {
-    font-family: 'Barlow', sans-serif; font-weight: 600;
+    font-family: 'Geist', sans-serif; font-weight: 600;
     font-size: clamp(30px, 5vw, 62px); line-height: 1.04;
     letter-spacing: -0.01em; max-width: 15ch; margin-bottom: 0.6em;
   }
   .hero h1 .accent { color: var(--accent); }
   .hero .sub {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.14em;
+    font-family: 'Geist', sans-serif; font-weight: 600;
+    text-transform: none; letter-spacing: 0.01em;
     font-size: clamp(14px, 1.8vw, 22px); color: var(--ink); margin-bottom: 2em;
   }
   .hero .lead {
-    font-size: clamp(16px, 1.5vw, 20px); color: #D7D2CC;
+    font-size: clamp(16px, 1.5vw, 20px); color: #E4E4E4;
     max-width: 60ch; margin-bottom: 2.4em; font-weight: 300;
   }
   .hero .lead strong { font-weight: 600; color: var(--ink); }
@@ -129,15 +129,15 @@
   /* ── BUTTON ── */
   .btn {
     display: inline-flex; align-items: center; gap: 0.7em;
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.14em;
+    font-family: 'Geist', sans-serif; font-weight: 700;
+    text-transform: none; letter-spacing: 0.01em;
     font-size: clamp(13px, 1.3vw, 16px);
-    background: var(--accent); color: #fff; text-decoration: none;
+    background: var(--accent); color: #000; text-decoration: none;
     padding: 0.95em 1.8em; border-radius: 2px;
     transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
-    box-shadow: 0 8px 30px rgba(123,47,255,0.28);
+    box-shadow: 0 8px 30px rgba(61,242,184,0.28);
   }
-  .btn:hover { transform: translateY(-2px); background: #8c47ff; box-shadow: 0 12px 40px rgba(123,47,255,0.4); }
+  .btn:hover { transform: translateY(-2px); background: #6FF5CA; box-shadow: 0 12px 40px rgba(61,242,184,0.4); }
   .btn__arrow { font-size: 1.1em; }
   .btn--ghost { background: transparent; color: var(--ink); box-shadow: none; border: 1px solid var(--line); }
   .btn--ghost:hover { background: var(--bg-soft); border-color: var(--accent); box-shadow: none; }
@@ -149,7 +149,7 @@
     padding: 3vw 0; margin: 2vw 0 0;
   }
   .stat__num {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-family: 'Geist', sans-serif; font-weight: 700;
     font-size: clamp(26px, 3.4vw, 44px); color: var(--ink); line-height: 1;
   }
   .stat__num span { color: var(--accent); }
@@ -162,7 +162,7 @@
   section { padding: 6.5vw 0; }
   .sec-head { margin-bottom: 3.5vw; max-width: 44ch; }
   .sec-head h2 {
-    font-family: 'Barlow', sans-serif; font-weight: 600;
+    font-family: 'Geist', sans-serif; font-weight: 600;
     font-size: clamp(24px, 3.4vw, 40px); line-height: 1.1;
     letter-spacing: -0.01em; margin-top: 0.5em;
   }
@@ -172,21 +172,21 @@
   .pillar { background: var(--bg); padding: 3vw 2.6vw; transition: background 0.2s ease; }
   .pillar:hover { background: var(--bg-soft); }
   .pillar__no {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-    color: var(--accent); letter-spacing: 0.1em; font-size: clamp(12px,1.1vw,14px);
+    font-family: 'Geist', sans-serif; font-weight: 700;
+    color: var(--accent); letter-spacing: 0.01em; font-size: clamp(12px,1.1vw,14px);
     margin-bottom: 1em; display: block;
   }
   .pillar h3 {
-    font-family: 'Barlow', sans-serif; font-weight: 600;
+    font-family: 'Geist', sans-serif; font-weight: 600;
     font-size: clamp(19px, 2vw, 25px); margin-bottom: 0.6em; line-height: 1.15;
   }
-  .pillar p { color: #C9C4BE; font-weight: 300; font-size: clamp(14px,1.15vw,16px); }
+  .pillar p { color: #DADADA; font-weight: 300; font-size: clamp(14px,1.15vw,16px); }
   .pillar p .hl { color: var(--ink); font-weight: 600; }
 
   /* ── PROCESS ── */
   .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2vw; }
   .step { border-top: 2px solid var(--accent); padding-top: 1.2em; }
-  .step__no { font-family:'Barlow Condensed',sans-serif; font-weight:700; color: var(--muted); letter-spacing:0.2em; font-size: 12px; }
+  .step__no { font-family:'Geist',sans-serif; font-weight:700; color: var(--muted); letter-spacing:0.01em; font-size: 12px; }
   .step h4 { font-weight: 600; font-size: clamp(16px,1.5vw,19px); margin: 0.4em 0 0.4em; }
   .step p { color: var(--muted); font-weight: 300; font-size: clamp(13px,1.05vw,15px); }
 
@@ -198,7 +198,7 @@
   }
   .cta h2 { font-weight: 600; font-size: clamp(24px, 3.4vw, 42px); line-height: 1.08; max-width: 20ch; margin: 0.4em auto 0.6em; }
   .cta p { color: var(--muted); max-width: 46ch; margin: 0 auto 2em; font-weight: 300; font-size: clamp(15px,1.3vw,18px); }
-  .cta .fineprint { font-family:'Barlow Condensed',sans-serif; text-transform: uppercase; letter-spacing: 0.18em; font-size: 11px; color: var(--faint); margin-top: 1.6em; }
+  .cta .fineprint { font-family:'Geist',sans-serif; text-transform: none; letter-spacing: 0.01em; font-size: 11px; color: var(--faint); margin-top: 1.6em; }
 
   /* ── FOOTER ── */
   footer { border-top: 1px solid var(--line); padding: 4vw 6vw; display: flex; flex-wrap: wrap; gap: 1.5em; justify-content: space-between; align-items: center; }
@@ -206,8 +206,8 @@
   .foot-links { display: flex; flex-wrap: wrap; gap: 1.4em; }
   .foot-links a {
     color: var(--muted); text-decoration: none;
-    font-family:'Barlow Condensed',sans-serif; font-weight:600;
-    text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px;
+    font-family:'Geist',sans-serif; font-weight:600;
+    text-transform: none; letter-spacing: 0.01em; font-size: 12px;
     transition: color 0.15s ease;
   }
   .foot-links a:hover { color: var(--accent); }
@@ -232,19 +232,14 @@
     .header__meta a:last-child { border-bottom: none; }
     .nav-toggle { display: flex; }
   }
+  .side-logo__img { display:block; height:26px; width:auto; }
+  .sidebar .side-logo__img { height:40px; }
 </style>
 </head>
 <body>
 
 <header>
-  <a class="side-logo" href="index.html">
-    <span class="side-logo__makers">Makers</span>
-    <div class="side-logo__rule-row">
-      <span class="side-logo__rule side-logo__rule--left"></span>
-      <span class="side-logo__dept">Department</span>
-      <span class="side-logo__rule side-logo__rule--right"></span>
-    </div>
-  </a>
+  <a class="side-logo" href="index.html" aria-label="Makers Department — home"><img class="side-logo__img" src="brand/md-logo-green-white.svg" alt="Makers Department"></a>
   <nav class="header__meta" id="site-nav">
     <a href="index.html">Intro</a>
     <a href="work.html">Work</a>

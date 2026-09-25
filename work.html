@@ -10,21 +10,21 @@
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;1,900&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
  <script defer src="https://cloud.umami.is/script.js" data-website-id="c7c45a31-1894-4024-971e-aa3c5f89ec3b"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --forge-black: #0D0C10;
+    --forge-black: #000000;
 
-    --raw-white: #F5F2EE;
-    --maker-violet: #7B2FFF;
-    --panel: #131118;
-    --line: #1E1A28;
-    --dim: #3A3545;
-    --mid: #555060;
-    --faint: #2A2530;
+    --raw-white: #FFFFFF;
+    --maker-violet: #3DF2B8;
+    --panel: #141414;
+    --line: #2A2A2A;
+    --dim: #8A8A8A;
+    --mid: #A3A3A3;
+    --faint: #6B6B6B;
     --topbar-h: 60px;
   }
 
@@ -38,7 +38,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 28px;
-    background: rgba(13,12,16,0.88);
+    background: rgba(0,0,0,0.88);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
@@ -49,10 +49,10 @@
 
   .site-nav { display: flex; align-items: center; gap: 2.2rem; }
   .site-nav a {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
+    text-transform: none;
+    letter-spacing: 0.01em;
     font-size: 15px;
     color: var(--mid);
     text-decoration: none;
@@ -78,7 +78,7 @@
   body {
     background-color: var(--forge-black);
     color: var(--raw-white);
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Geist', sans-serif;
   }
 
   a { color: inherit; text-decoration: none; }
@@ -107,10 +107,9 @@
   .side-logo { display: block; margin-bottom: 22px; }
 
   .side-logo__makers {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-style: italic;
-    text-transform: uppercase;
+    font-family: 'Geist', sans-serif;
+    font-weight: 700;
+    text-transform: none;
     font-size: 44px;
     line-height: 0.88;
     letter-spacing: -0.03em;
@@ -130,11 +129,11 @@
   .side-logo__rule--right { width: 12px; flex-shrink: 0; }
 
   .side-logo__dept {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-weight: 700;
-    text-transform: uppercase;
+    text-transform: none;
     font-size: 11px;
-    letter-spacing: 0.35em;
+    letter-spacing: 0.01em;
     color: var(--maker-violet);
     white-space: nowrap;
     flex-shrink: 0;
@@ -142,11 +141,11 @@
 
   /* ════════ SIDEBAR — DATE / LOCATION ════════ */
   .side-meta {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-weight: 700;
-    text-transform: uppercase;
+    text-transform: none;
     font-size: 10px;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.01em;
     line-height: 2.1;
     margin-bottom: 28px;
   }
@@ -166,8 +165,8 @@
     border-radius: 3px;
     transition: background-color 0.15s;
   }
-  .nav-item:hover { background-color: #16141B; }
-  .nav-item.is-active { background-color: #16141B; box-shadow: inset 2px 0 0 var(--maker-violet); }
+  .nav-item:hover { background-color: #1A1A1A; }
+  .nav-item.is-active { background-color: #1A1A1A; box-shadow: inset 2px 0 0 var(--maker-violet); }
 
   .nav-item__thumb {
     width: 52px;
@@ -184,11 +183,11 @@
   .nav-item__text { min-width: 0; }
 
   .nav-item__title {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-weight: 700;
-    text-transform: uppercase;
+    text-transform: none;
     font-size: 13px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.01em;
     color: var(--raw-white);
     display: block;
     white-space: nowrap;
@@ -210,11 +209,11 @@
   .side-foot { margin-top: auto; display: flex; flex-direction: column; gap: 8px; padding-top: 24px; }
 
   .side-foot a {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-weight: 700;
-    text-transform: uppercase;
+    text-transform: none;
     font-size: 10px;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.01em;
     transition: color 0.2s;
   }
   .side-foot__intro { color: var(--dim); }
@@ -251,10 +250,10 @@
     bottom: 14px;
     right: 16px;
     z-index: 2;
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-weight: 700;
     font-size: 10px;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.01em;
     color: var(--raw-white);
     opacity: 0.55;
   }
@@ -280,11 +279,11 @@
   .card:hover .card__img { filter: grayscale(0) brightness(1); }
 
   .card__title {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-weight: 700;
-    text-transform: uppercase;
+    text-transform: none;
     font-size: 15px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.01em;
     color: var(--raw-white);
     margin-top: 14px;
     display: block;
@@ -326,10 +325,9 @@
   }
 
   .project__title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-style: italic;
-    text-transform: uppercase;
+    font-family: 'Geist', sans-serif;
+    font-weight: 700;
+    text-transform: none;
     font-size: 30px;
     letter-spacing: -0.01em;
     color: var(--raw-white);
@@ -349,17 +347,17 @@
   }
 
   .panel__label {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-weight: 700;
-    text-transform: uppercase;
+    text-transform: none;
     font-size: 11px;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.01em;
     color: var(--maker-violet);
     display: block;
     margin-bottom: 14px;
   }
 
-  .panel__body { font-size: 14px; line-height: 1.75; color: #B8B3AE; }
+  .panel__body { font-size: 14px; line-height: 1.75; color: #D0D0D0; }
 
   .panel__links {
     display: flex;
@@ -368,11 +366,11 @@
     margin-top: 18px;
   }
   .panel__links a {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-weight: 700;
-    text-transform: uppercase;
+    text-transform: none;
     font-size: 10px;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.01em;
     color: var(--mid);
     border: 1px solid var(--line);
     border-radius: 2px;
@@ -394,26 +392,25 @@
     filter: grayscale(1) brightness(0.85);
   }
   .about__title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-style: italic;
-    text-transform: uppercase;
+    font-family: 'Geist', sans-serif;
+    font-weight: 700;
+    text-transform: none;
     font-size: 30px;
     color: var(--raw-white);
     margin-bottom: 20px;
   }
   .about__title s { color: var(--mid); text-decoration-color: var(--maker-violet); }
-  .about__body { font-size: 14px; line-height: 1.85; color: #B8B3AE; }
-  .about__body a { color: var(--maker-violet); border-bottom: 1px solid rgba(123,47,255,0.3); }
+  .about__body { font-size: 14px; line-height: 1.85; color: #D0D0D0; }
+  .about__body a { color: var(--maker-violet); border-bottom: 1px solid rgba(61,242,184,0.3); }
 
   /* ── ABOUT: client wordmarks ── */
   .clients { margin-top: 40px; }
   .clients__label {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-weight: 700;
-    text-transform: uppercase;
+    text-transform: none;
     font-size: 11px;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.01em;
     color: var(--maker-violet);
     display: block;
     margin-bottom: 18px;
@@ -425,11 +422,11 @@
     gap: 14px 28px;
   }
   .clients__list li {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-weight: 700;
-    text-transform: uppercase;
+    text-transform: none;
     font-size: 14px;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.01em;
     color: var(--mid);
     transition: color 0.2s;
   }
@@ -463,20 +460,15 @@
     .site-nav a:last-child { border-bottom: none; }
     .nav-toggle { display: flex; }
   }
+  .side-logo__img { display:block; height:26px; width:auto; }
+  .site-header .side-logo { margin-bottom:0; }
 </style>
 </head>
 <body>
 
   <!-- ════════════════ SITE TOPBAR (shared across pages) ════════════════ -->
   <header class="site-header">
-    <a class="side-logo" href="index.html" aria-label="Makers Department — home">
-      <span class="side-logo__makers">Makers</span>
-      <div class="side-logo__rule-row">
-        <div class="side-logo__rule side-logo__rule--left"></div>
-        <span class="side-logo__dept">Department</span>
-        <div class="side-logo__rule side-logo__rule--right"></div>
-      </div>
-    </a>
+    <a class="side-logo" href="index.html" aria-label="Makers Department — home"><img class="side-logo__img" src="brand/md-logo-green-white.svg" alt="Makers Department"></a>
     <nav class="site-nav" id="site-nav">
       <a href="index.html">Intro</a>
       <a href="work.html" class="is-current">Work</a>

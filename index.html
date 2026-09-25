@@ -3,342 +3,215 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Makers Department | Industrial Design Consultancy</title>
-<meta name="description" content="Makers Department is a founder-friendly industrial design consultancy. We help engineering-led hardware teams in IoT, medtech, robotics and consumer electronics go from working prototype to market-ready product.">
+<title>Makers Department | Strategic innovation for manufacturing and public services</title>
+<meta name="description" content="Makers Department is a strategic innovation partner for manufacturing and public services. From Lisbon, we help manufacturers and public-sector organisations decide what to build, then design, engineer and deliver it.">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;1,900&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="c7c45a31-1894-4024-971e-aa3c5f89ec3b"></script>
 <style>
+  /* Makers Department design system tokens (dark theme) */
+  :root {
+    --md-green: #3DF2B8;
+    --md-green-deep: #238C6A;
+    --surface: #000000;
+    --surface-raised: #141414;
+    --ink: #FFFFFF;
+    --ink-muted: #A3A3A3;
+    --line: #2A2A2A;
+    --on-accent: #000000;
+    --space-1: 4px; --space-2: 8px; --space-3: 16px; --space-4: 24px;
+    --space-5: 32px; --space-6: 48px; --space-7: 80px;
+    --radius-sm: 2px;
+    --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "Geist Mono", ui-monospace, Menlo, monospace;
+  }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html, body {
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
-  }
-
+  html, body { width: 100%; }
   body {
-    background-color: #0D0C10;
-    color: #F5F2EE;
-    font-family: 'Barlow', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: center;
-    padding: 5.5vw 5vw;
-    position: relative;
-    overflow: hidden;
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
   }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--md-green); outline-offset: 2px; }
 
-  /* ── TOP META ── */
-  .meta-top {
-    position: absolute;
-    top: 5.5vw;
-    left: 5vw;
-    right: 5vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-6); }
+
+  /* header */
+  .top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--space-5) 0;
   }
+  .top__logo img { display: block; height: 34px; width: auto; }
+  .top__nav { display: flex; gap: var(--space-5); }
+  .top__nav a { font-size: 15px; font-weight: 600; color: var(--ink-muted); transition: color .2s; }
+  .top__nav a:hover { color: var(--ink); }
 
-  .meta-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: clamp(7px, 0.9vw, 11px);
-    letter-spacing: 0.25em;
-    color: #2A2530;
+  /* hero */
+  .hero { padding: var(--space-7) 0 var(--space-6); border-bottom: 1px solid var(--line); }
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 13px; color: var(--md-green);
+    margin-bottom: var(--space-4); display: block;
   }
-
-  /* ── LOGO ── */
-  .logo {
-    width: 100%;
-    position: relative;
-    z-index: 1;
+  .hero h1 {
+    font-size: clamp(40px, 6.4vw, 84px); line-height: .98; font-weight: 700;
+    letter-spacing: -0.035em; max-width: 14ch;
   }
-
-  .logo__makers {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-style: italic;
-    text-transform: uppercase;
-    font-size: clamp(60px, 15.5vw, 15.5vw);
-    line-height: 0.88;
-    letter-spacing: -0.03em;
-    color: #F5F2EE;
-    white-space: nowrap;
-    display: block;
+  .hero h1 em { font-style: normal; color: var(--md-green); }
+  .hero p {
+    margin-top: var(--space-5); font-size: 19px; line-height: 1.55;
+    color: var(--ink-muted); max-width: 58ch;
   }
-
-  .logo__rule-row {
-    display: flex;
-    align-items: center;
-    gap: 1vw;
-    margin-top: 0.5vw;
-    width: 100%;
+  .hero p strong { color: var(--ink); font-weight: 500; }
+  .ctas { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+  .btn {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    padding: 14px 22px; border-radius: var(--radius-sm);
+    font-size: 15px; font-weight: 600; transition: background .2s, color .2s, border-color .2s;
   }
+  .btn--primary { background: var(--md-green); color: var(--on-accent); }
+  .btn--primary:hover { background: #6FF5CA; }
+  .btn--ghost { border: 1px solid var(--line); color: var(--ink); }
+  .btn--ghost:hover { border-color: var(--md-green); }
 
-  .logo__rule {
-    height: 2px;
-    background-color: #7B2FFF;
+  /* pillars */
+  .pillars {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--line);
   }
-  .logo__rule--left { flex: 1 1 0; min-width: 0; }
-  .logo__rule--right { width: 2.5vw; flex-shrink: 0; }
-
-  .logo__dept {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: clamp(8px, 1.6vw, 1.6vw);
-    letter-spacing: 0.35em;
-    color: #7B2FFF;
-    white-space: nowrap;
-    flex-shrink: 0;
+  .pillar { padding: var(--space-6) var(--space-5) var(--space-6) 0; }
+  .pillar + .pillar { padding-left: var(--space-5); border-left: 1px solid var(--line); }
+  .pillar__num { font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); }
+  .pillar h2 {
+    margin-top: var(--space-3); font-size: 24px; line-height: 1.2; font-weight: 700; letter-spacing: -0.015em;
   }
-
-  /* ── TAGLINE ── */
-  .tagline {
-    margin-top: 2vw;
-    font-family: 'Barlow', sans-serif;
-    font-weight: 400;
-    font-size: clamp(9px, 1.2vw, 1.2vw);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #3A3545;
+  .pillar p { margin-top: var(--space-3); color: var(--ink-muted); font-size: 16px; }
+  .pillar a.more {
+    display: inline-block; margin-top: var(--space-4); font-size: 15px; font-weight: 600; color: var(--md-green);
+    border-bottom: 1px solid rgba(61,242,184,.35); padding-bottom: 1px;
   }
+  .pillar a.more:hover { border-color: var(--md-green); }
 
-  /* ── DIVIDER ── */
-  .divider {
-    width: 4vw;
-    height: 1px;
-    background-color: #1E1A28;
-    margin: 2.2vw 0;
+  /* how we work */
+  .how { padding: var(--space-7) 0; display: grid; grid-template-columns: 1fr 2fr; gap: var(--space-6); border-bottom: 1px solid var(--line); }
+  .how h2 { font-size: 30px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; }
+  .steps { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5) var(--space-6); }
+  .steps li strong { display: block; font-size: 18px; font-weight: 600; margin-bottom: var(--space-1); }
+  .steps li span { color: var(--ink-muted); }
+
+  /* footer */
+  .foot {
+    display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: var(--space-4);
+    padding: var(--space-6) 0 var(--space-6);
   }
+  .foot__meta { font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); line-height: 1.8; }
+  .foot__meta a { color: var(--md-green); }
+  .foot__social { display: flex; gap: var(--space-4); align-items: center; }
+  .foot__social a { opacity: .6; transition: opacity .2s; display: flex; }
+  .foot__social a:hover { opacity: 1; }
 
-  /* ── CONTACT BLOCK ── */
-  .contact {
-    font-family: 'Barlow', sans-serif;
-    font-weight: 400;
-    font-size: clamp(11px, 1.3vw, 1.3vw);
-    line-height: 1.9;
-    color: #3A3545;
-    max-width: 55%;
+  @media (max-width: 860px) {
+    .wrap { padding: 0 var(--space-4); }
+    .top__nav { gap: var(--space-4); }
+    .pillars { grid-template-columns: 1fr; }
+    .pillar, .pillar + .pillar { padding: var(--space-5) 0; border-left: none; }
+    .pillar + .pillar { border-top: 1px solid var(--line); }
+    .how { grid-template-columns: 1fr; padding: var(--space-6) 0; }
+    .steps { grid-template-columns: 1fr; }
   }
-
-  @media (max-width: 600px) {
-    .contact { max-width: 100%; }
-  }
-
-  .contact__intro { color: #555060; }
-
-  /* ── WIP CTA BUTTON ── */
-  .wip-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 2.4vw;
-    padding: 0.9em 1.6em;
-    background-color: #7B2FFF;
-    border-radius: 4px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: clamp(11px, 1.1vw, 13px);
-    color: #F5F2EE;
-    text-decoration: none;
-    border-bottom: none;
-    transition: opacity 0.2s;
-  }
-  .wip-cta:hover { opacity: 0.85; }
-
-  a {
-    color: #7B2FFF;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(123,47,255,0.3);
-    padding-bottom: 1px;
-    transition: border-color 0.2s;
-  }
-  a:hover { border-color: #7B2FFF; }
-
-  /* ── BOTTOM ROW ── */
-  .meta-bottom {
-    position: absolute;
-    bottom: 5.5vw;
-    left: 5vw;
-    right: 5vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  /* nav + email stacked bottom-left */
-  .meta-bottom__left {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
-  }
-
-  .site-nav { display: flex; gap: 1.5vw; }
-  .site-nav a {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: clamp(7px, 0.9vw, 11px);
-    letter-spacing: 0.25em;
-    color: #555060;
-    text-decoration: none;
-    border: none;
-    padding: 0;
-    transition: color 0.2s;
-  }
-  .site-nav a:hover { color: #7B2FFF; border: none; }
-
-  .meta-bottom__email {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: clamp(7px, 0.9vw, 11px);
-    letter-spacing: 0.25em;
-    color: #7B2FFF;
-    text-decoration: none;
-    border: none;
-    padding: 0;
-  }
-  .meta-bottom__email:hover { border: none; }
-
-  .meta-bottom__right {
-    display: flex;
-    align-items: center;
-    gap: 1.5vw;
-  }
-
-  .social-icon {
-    display: flex;
-    align-items: center;
-    opacity: 0.35;
-    transition: opacity 0.2s;
-    border: none;
-    padding: 0;
-  }
-  .social-icon:hover { opacity: 1; border: none; }
-
-  .meta-bottom__url {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: clamp(7px, 0.9vw, 11px);
-    letter-spacing: 0.25em;
-    color: #2A2530;
-  }
-
-/* ── MOBILE ── */
-  @media (max-width: 600px) {
-    html, body { height: auto; }
-    body {
-      overflow: visible;
-      min-height: 100vh;
-      justify-content: flex-start;
-      padding-top: 20vw;
-      padding-bottom: 8vw;
-    }
-    .meta-bottom {
-      position: static;
-      margin-top: 14vw;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 16px;
-    }
+  @media (max-width: 560px) {
+    .top { flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+    .top__logo img { height: 28px; }
+    .hero { padding-top: var(--space-6); }
+    .hero p { font-size: 17px; }
   }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-  <!-- TOP META -->
-  <div class="meta-top">
-    <span class="meta-label" id="founded-label">Founded in London · Operating from Lisbon</span>
-    <span class="meta-label">Est. 2016</span>
-  </div>
+  <header class="top">
+    <a class="top__logo" href="index.html" aria-label="Makers Department — home">
+      <img src="brand/md-logo-green-white.svg" alt="Makers Department">
+    </a>
+    <nav class="top__nav">
+      <a href="work.html">Work</a>
+      <a href="sourcing.html">Sourcing</a>
+      <a href="ai-campaigns.html">AI Campaigns</a>
+    </nav>
+  </header>
 
-  <!-- LOGO -->
-  <div class="logo">
-    <span class="logo__makers">Makers</span>
-    <div class="logo__rule-row">
-      <div class="logo__rule logo__rule--left"></div>
-      <span class="logo__dept">Department</span>
-      <div class="logo__rule logo__rule--right"></div>
+  <section class="hero">
+    <span class="eyebrow">Strategic innovation partner · Lisbon · Est. 2016</span>
+    <h1>Innovation for <em>manufacturing</em> and <em>public services</em>.</h1>
+    <p>We help manufacturers and public-sector organisations work out what to build and why, then design it, engineer it and get it made. <strong>One partner from the first question to the factory floor, and to the service people rely on.</strong></p>
+    <div class="ctas">
+      <a class="btn btn--primary" href="https://calendar.app.google/BX7oAqHSHxMpu7866" target="_blank" rel="noopener noreferrer">Book a short call →</a>
+      <a class="btn btn--ghost" href="work.html">See our work</a>
     </div>
-  </div>
+  </section>
 
-  <!-- TAGLINE -->
-  <div class="tagline">Industrial Design Consultancy</div>
-
-  <!-- DIVIDER -->
-  <div class="divider"></div>
-
-  <!-- CONTACT BLOCK -->
-  <div class="contact">
-    <span class="contact__intro">New website is in the works. </span>
-    <span>For new project enquiries — </span>
-    <a href="mailto:makersdepartment@gmail.com">email us</a>
-    <span> or </span>
-    <a href="https://calendar.app.google/BX7oAqHSHxMpu7866" target="_blank" rel="noopener noreferrer">request a brief call</a>
-    <span>.</span>
-    <br>
-    <span>For more — follow us on </span>
-    <a href="https://www.linkedin.com/company/10312547/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    <span> or </span>
-    <a href="https://www.youtube.com/channel/UCAXoUrGAnq2vTw7AuPqBwSw" target="_blank" rel="noopener noreferrer">YouTube</a>
-    <span>.</span>
-  </div>
-
-  <!-- WIP CTA -->
-  <a href="work.html" class="wip-cta">Access our WIP website here →</a>
-
-  <!-- BOTTOM ROW -->
-  <div class="meta-bottom">
-    <div class="meta-bottom__left">
-      <nav class="site-nav">
-        <a href="work.html">Latest Work</a>
-        <a href="sourcing.html">Portugal Sourcing</a>
-      </nav>
-      <a href="mailto:makersdepartment@gmail.com" class="meta-bottom__email">makersdepartment@gmail.com</a>
+  <section class="pillars">
+    <div class="pillar">
+      <span class="pillar__num">01 — Manufacturing</span>
+      <h2>Products that can actually be made</h2>
+      <p>Product strategy, industrial design and design for manufacture. We shape what you build around real processes, costs and quality targets, so it scales without surprises.</p>
+      <a class="more" href="work.html">Selected work</a>
     </div>
-    <div class="meta-bottom__right">
-      <!-- LinkedIn -->
-      <a href="https://www.linkedin.com/company/10312547/" target="_blank" rel="noopener noreferrer" class="social-icon">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" fill="#F5F2EE"/>
-          <rect x="2" y="9" width="4" height="12" fill="#F5F2EE"/>
-          <circle cx="4" cy="4" r="2" fill="#F5F2EE"/>
+    <div class="pillar">
+      <span class="pillar__num">02 — Public services</span>
+      <h2>Innovation that reaches people</h2>
+      <p>We bring a maker's discipline to public-sector challenges: research, prototyping and delivery of the products, equipment and services that citizens use every day.</p>
+      <a class="more" href="https://calendar.app.google/BX7oAqHSHxMpu7866" target="_blank" rel="noopener noreferrer">Talk to us</a>
+    </div>
+    <div class="pillar">
+      <span class="pillar__num">03 — Sourcing &amp; supply chain</span>
+      <h2>A partner on the ground in Portugal</h2>
+      <p>Supplier selection, tooling, samples and production management. A shorter, more resilient supply chain, run by people who care how things are made.</p>
+      <a class="more" href="sourcing.html">Sourcing in Portugal</a>
+    </div>
+  </section>
+
+  <section class="how">
+    <h2>How we work with you</h2>
+    <ol class="steps">
+      <li><strong>Frame</strong><span>Find the real problem and the opportunity worth pursuing.</span></li>
+      <li><strong>Design</strong><span>Concepts, CMF and engineering, tested early with the people who'll use it.</span></li>
+      <li><strong>Make</strong><span>Design for manufacture, suppliers and tooling, all the way to production.</span></li>
+      <li><strong>Deliver</strong><span>Launch, measure, improve. We stay involved until it works.</span></li>
+    </ol>
+  </section>
+
+  <footer class="foot">
+    <div class="foot__meta">
+      Founded in London · Operating from Lisbon<br>
+      <a href="mailto:makersdepartment@gmail.com">makersdepartment@gmail.com</a>
+    </div>
+    <div class="foot__social">
+      <a href="https://www.linkedin.com/company/10312547/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" fill="#FFFFFF"/>
+          <rect x="2" y="9" width="4" height="12" fill="#FFFFFF"/>
+          <circle cx="4" cy="4" r="2" fill="#FFFFFF"/>
         </svg>
       </a>
-      <!-- YouTube -->
-      <a href="https://www.youtube.com/channel/UCAXoUrGAnq2vTw7AuPqBwSw" target="_blank" rel="noopener noreferrer" class="social-icon">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-          <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" fill="#F5F2EE"/>
-          <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#0D0C10"/>
+      <a href="https://www.youtube.com/channel/UCAXoUrGAnq2vTw7AuPqBwSw" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" fill="#FFFFFF"/>
+          <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#000000"/>
         </svg>
       </a>
-      <span class="meta-bottom__url">makersdepartment.com</span>
     </div>
-  </div>
+  </footer>
 
-  <script>
-    // Shorten label on mobile
-    function updateLabel() {
-      const el = document.getElementById('founded-label');
-      if (window.innerWidth < 600) {
-        el.textContent = 'Founded London · Lisbon';
-      } else {
-        el.textContent = 'Founded in London · Operating from Lisbon';
-      }
-    }
-    updateLabel();
-    window.addEventListener('resize', updateLabel);
-  </script>
-
+</div>
 </body>
 </html>
