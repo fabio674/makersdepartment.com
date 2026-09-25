@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Latest Work | Makers Department</title>
 <meta name="description" content="Selected industrial design work by Makers Department — IoT, medtech, robotics and consumer electronics products taken from prototype to market.">
-<link rel="icon" href="favicon.ico" sizes="48x48">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="favicon.ico?v=2" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png?v=2">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
  <script defer src="https://cloud.umami.is/script.js" data-website-id="c7c45a31-1894-4024-971e-aa3c5f89ec3b"></script>
@@ -403,6 +403,15 @@
   .about__body { font-size: 14px; line-height: 1.85; color: #D0D0D0; }
   .about__body a { color: var(--maker-violet); border-bottom: 1px solid rgba(61,242,184,0.3); }
 
+  /* ── ABOUT: people ── */
+  .people { display: grid; gap: 36px; }
+  .person { padding-top: 24px; border-top: 1px solid var(--line); }
+  .person__name { font-family: 'Geist', sans-serif; font-weight: 700; font-size: 18px; color: var(--raw-white); margin-bottom: 4px; }
+  .person__role { display: block; font-size: 12px; color: var(--maker-violet); margin-bottom: 12px; }
+  .person .about__body { margin-bottom: 12px; }
+  .person__link { font-size: 13px; color: var(--maker-violet); border-bottom: 1px solid rgba(61,242,184,0.3); }
+  .person__link:hover { border-color: var(--maker-violet); }
+
   /* ── ABOUT: client wordmarks ── */
   .clients { margin-top: 40px; }
   .clients__label {
@@ -519,36 +528,54 @@
     <!-- ABOUT VIEW -->
     <section class="view" id="view-about">
       <div class="about">
-        <img class="about__portrait" src="images/about/portrait.jpg" alt="Portrait">
-        <h1 class="about__title">About <s>us</s> me</h1>
-        <p class="about__body">
-          Makers Department started life as an agency. These days, the department is
-          mostly one maker — and that's not a confession, it's the offer. I began as an
-          industrial designer, but startups have a way of stretching you: soon I was
-          managing processes and people well beyond design, deep in engineering,
-          manufacturing and business decisions. Somewhere along the way I stopped being
-          'the designer' and became the strategic right arm founders call when things
-          need to get done — a long-term partner, accountable end to end. And when a
-          project needs more hands than mine, I build the team: designers, engineers
-          and manufacturers drawn from a network grown over a decade, managed with the
-          same care I ran my own studio. You get the reach of an agency with the
-          attention of one person who genuinely cares. Less overhead. More making.
-        </p>
+        <h1 class="about__title">About</h1>
+        <div class="people">
+          <div class="person">
+            <h2 class="person__name">Fabio Salvador</h2>
+            <span class="person__role">Hardware design &amp; operations</span>
+            <p class="about__body">
+              Helps bring high-end consumer products into mass production: sourcing, supply
+              chain management and manufacturing oversight, seen through an industrial
+              designer's eye for detail. A decade of designing and manufacturing for global
+              brands like McLaren Automotive, Joseph Joseph and Unilever, and startups
+              including Valkyrie Industries, Sensate and Flowbio. Sits between concept and
+              factory floor: catching DFM issues before they become tooling costs, specifying
+              CMF that holds up at scale, and managing suppliers through a manufacturing
+              network in Portugal.
+            </p>
+            <a class="person__link" href="https://www.linkedin.com/in/fabio-a-salvador/" target="_blank" rel="noopener noreferrer">LinkedIn →</a>
+          </div>
+          <div class="person">
+            <h2 class="person__name">Lais de Almeida</h2>
+            <span class="person__role">Service design &amp; public health</span>
+            <p class="about__body">
+              Principal Service Designer at Genomics England, with 10 years across the
+              healthcare and technology industries. On a life-long mission to get emerging
+              technology into actual healthcare delivery. MA Service Design from the Royal
+              College of Art and MPH Global Public Health from Imperial College London.
+            </p>
+            <a class="person__link" href="https://www.linkedin.com/in/lais-de-almeida/" target="_blank" rel="noopener noreferrer">LinkedIn →</a>
+          </div>
+        </div>
         <div class="clients">
           <span class="clients__label">Selected clients &amp; collaborations</span>
           <ul class="clients__list">
-            <li>V&amp;A</li>
-            <li>McLaren</li>
-            <li>Emirates</li>
-            <li>du</li>
-            <li>Libman</li>
-            <li>Unilever</li>
+            <li>Bloomberg</li>
             <li>Bosch</li>
-            <li>Playforever</li>
+            <li>DeepMind</li>
+            <li>DU</li>
+            <li>Emirates</li>
+            <li>Genomics England</li>
+            <li>Google</li>
             <li>Joseph Joseph</li>
+            <li>Libman</li>
             <li>Magnitone</li>
+            <li>McLaren</li>
+            <li>Playforever</li>
             <li>Royal Air Force</li>
             <li>Škoda</li>
+            <li>Unilever</li>
+            <li>V&amp;A</li>
           </ul>
         </div>
       </div>
@@ -688,13 +715,13 @@
     /* ── BUILD NAVIGATOR ── */
     const navList = document.getElementById('nav-list');
 
-    // About item first (title with crossed-out "us")
+    // About item first
     navList.insertAdjacentHTML('beforeend', `
       <a class="nav-item" href="#about" data-route="about">
-        <img class="nav-item__thumb" src="images/about/thumb.jpg" alt="">
+        <img class="nav-item__thumb" src="favicon-512.png?v=2" alt="">
         <span class="nav-item__text">
-          <span class="nav-item__title">About <s>us</s> me</span>
-          <span class="nav-item__desc">The Maker Behind the Department</span>
+          <span class="nav-item__title">About</span>
+          <span class="nav-item__desc">The Makers Behind the Department</span>
         </span>
       </a>`);
 
