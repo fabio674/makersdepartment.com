@@ -308,6 +308,34 @@
     margin-bottom: 32px;
   }
 
+  /* ── REVIEW LOCK (project hero masked until a code is entered) ── */
+  .locked { position: relative; margin-bottom: 32px; overflow: hidden; border: 1px solid var(--line); background: var(--panel); }
+  .locked .project__hero { margin-bottom: 0; border: 0; filter: blur(28px) brightness(0.45); transform: scale(1.1); transition: filter 0.5s ease, transform 0.5s ease; }
+  .locked__mask {
+    position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px; padding: 24px; text-align: center; background: rgba(0,0,0,0.35);
+  }
+  .locked__badge { font-size: 12px; font-weight: 700; letter-spacing: 0.01em; color: var(--maker-violet); display: inline-flex; align-items: center; gap: 8px; }
+  .locked__badge svg { width: 14px; height: 14px; }
+  .locked__title { font-size: clamp(20px, 2.4vw, 28px); font-weight: 700; color: var(--raw-white); letter-spacing: -0.02em; }
+  .locked__form { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .locked__input {
+    font: inherit; font-size: 14px; color: var(--raw-white); background: rgba(0,0,0,0.6);
+    border: 1px solid var(--line); border-radius: 2px; padding: 10px 14px; width: 200px;
+  }
+  .locked__input:focus { outline: none; border-color: var(--maker-violet); }
+  .locked__btn {
+    font: inherit; font-size: 14px; font-weight: 700; color: #000; background: var(--maker-violet);
+    border: 0; border-radius: 2px; padding: 10px 18px; cursor: pointer;
+  }
+  .locked__btn:focus-visible { outline: 2px solid var(--raw-white); outline-offset: 2px; }
+  .locked__msg { font-size: 13px; color: var(--mid); min-height: 1.3em; }
+  .locked.is-unlocked .project__hero { filter: none; transform: none; }
+  .locked.is-unlocked .locked__mask { display: none; }
+  .locked.is-shake .locked__form { animation: lock-shake 0.35s; }
+  @keyframes lock-shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+  @media (prefers-reduced-motion: reduce) { .locked .project__hero { transition: none; } .locked.is-shake .locked__form { animation: none; } }
+
   .project__video {
     position: relative;
     width: 100%;
@@ -597,6 +625,9 @@
          video: 'YOUTUBE_ID'  -> replaces the hero image with an
                 embedded player (the ID is the part after watch?v=)
          links: [{ label, url }]  -> pill links under More information
+         lock: 'SHA-256 of code' -> hero is blurred behind an
+                "Under client review" mask until the code is typed.
+                Make a hash: printf %s 'code' | sha256sum
        TEXT LIMITS (characters incl. spaces):
          navDesc: 45 | cardText: 100 | aboutProject: 550 | moreInfo: 350
        ══════════════════════════════════════════════════════════════ */
@@ -604,6 +635,7 @@
       {
         slug: 'skoda-duo-bell',
         title: 'Skoda Duo Bell',
+        lock: 'f8629b3747a7e9c172a918462af75d2505e8ec940da8b1db72ec91a19f0c193c',  /* under client review — delete this line to release */
         navDesc: 'Acoustic Safety Design',
         cardText: 'A chip-free bicycle bell acoustically engineered to cut through noise-cancelling headphones.',
         aboutProject: `The DuoBell is an analogue answer to a digital problem. Research with the University of Salford identified a blind spot in active noise-cancelling algorithms between 750–780 Hz — and the bell is engineered to strike exactly there. A secondary resonator and a specialised hammer mechanism produce rapid, irregular strikes that ANC software cannot predict or suppress. No batteries, no Bluetooth, no chips: pure mechanical and acoustic engineering in a minimal, handlebar-ready form.`,
@@ -625,6 +657,7 @@
       {
         slug: 'infraway-l1',
         title: 'Infraway L1',
+        lock: '43fee5d8c52ad1790fce5ed66163ff6a467f4aac185962e78d12978025a86c1b',  /* under client review — delete this line to release */
         navDesc: 'Wearable Infrared Therapy',
         cardText: 'IoT heat-therapy wearable fusing FIR bioceramic textiles with app-controlled dual-heat electronics.',
         aboutProject: `The L1 sits where soft goods meet electronics — one of the hardest categories in industrial design. The brief: professional-grade recovery in a form you forget you're wearing. At under an inch thick and 1.5 lbs, the L1 combines a 4-way stretch antimicrobial fabric embedded with far-infrared bioceramics and a patented dual-heat system that penetrates 75 mm below the skin. Flexible heating zones, battery placement and strap architecture were resolved around the body's movement, while Bluetooth app control keeps the hardware interface minimal.`,
@@ -757,6 +790,20 @@
                      allowfullscreen></iframe>
            </div>`
         : `<img class="project__hero" src="images/projects/${p.slug}/hero.jpg" alt="${p.title}">`;
+      const heroBlock = p.lock
+        ? `<div class="locked" data-lock="${p.lock}" data-slug="${p.slug}">
+             ${media}
+             <div class="locked__mask">
+               <span class="locked__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Under client review</span>
+               <span class="locked__title">Enter the code to view</span>
+               <form class="locked__form">
+                 <input class="locked__input" type="password" autocomplete="off" placeholder="Access code" aria-label="Access code for ${p.title}">
+                 <button class="locked__btn" type="submit">Unlock</button>
+               </form>
+               <span class="locked__msg" role="status"></span>
+             </div>
+           </div>`
+        : media;
 
       const links = (p.links && p.links.length)
         ? `<div class="panel__links">${p.links.map(l =>
@@ -765,7 +812,7 @@
 
       projectViews.insertAdjacentHTML('beforeend', `
         <section class="view" id="view-${p.slug}">
-          ${media}
+          ${heroBlock}
           <h1 class="project__title">${p.title}</h1>
           <div class="panels">
             <div class="panel">
@@ -779,6 +826,30 @@
             </div>
           </div>
         </section>`);
+    });
+
+    /* ── REVIEW LOCK — code checked against its SHA-256, unlock kept for this tab session ── */
+    async function sha256(text) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+      return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+    document.querySelectorAll('.locked').forEach(box => {
+      const key = 'md-unlock-' + box.dataset.slug;
+      try { if (sessionStorage.getItem(key) === box.dataset.lock) box.classList.add('is-unlocked'); } catch (_) {}
+      const input = box.querySelector('.locked__input');
+      const msg = box.querySelector('.locked__msg');
+      box.querySelector('.locked__form').addEventListener('submit', async e => {
+        e.preventDefault();
+        const code = input.value.trim().toLowerCase().replace(/\s+/g, '');
+        if (code && await sha256(code) === box.dataset.lock) {
+          box.classList.add('is-unlocked');
+          try { sessionStorage.setItem(key, box.dataset.lock); } catch (_) {}
+        } else {
+          msg.textContent = 'That code doesn\'t match. Try again.';
+          box.classList.remove('is-shake'); void box.offsetWidth; box.classList.add('is-shake');
+          input.select();
+        }
+      });
     });
 
     /* ── BUILD SLIDESHOW ── */
