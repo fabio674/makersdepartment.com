@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WavetecF25 | Makers Department</title>
+<meta name="robots" content="noindex, nofollow">
+<base href="../">
+<meta name="description" content="We don't generate your content — we build the system your marketing team uses to generate it themselves. A bespoke AI content framework built around your brand, budget and team.">
+<link rel="icon" href="favicon.ico?v=2" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png?v=2">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #000000;
+    --bg-soft: #141414;
+    --ink: #FFFFFF;
+    --muted: #A3A3A3;
+    --faint: #8A8A8A;
+    --line: #2A2A2A;
+    --accent: #3DF2B8;
+    --topbar-h: 60px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Geist', sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 6vw; }
+
+  .label {
+    font-family: 'Geist', sans-serif;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0.01em;
+    font-size: clamp(10px, 1vw, 12px);
+    color: var(--accent);
+  }
+  .label--muted { color: var(--faint); }
+
+  /* ── TOP BAR (shared component — identical markup/CSS to work.html / sourcing.html) ── */
+  header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 6vw; height: var(--topbar-h); position: sticky; top: 0; z-index: 50;
+    background: rgba(0,0,0,0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .side-logo { display: inline-block; text-decoration: none; }
+  .side-logo__makers {
+    font-family: 'Geist', sans-serif; font-weight: 700;
+    text-transform: none; font-size: 22px; line-height: 0.88;
+    letter-spacing: -0.03em; color: var(--ink); display: block;
+  }
+  .side-logo__rule-row { display: flex; align-items: center; gap: 6px; margin-top: 3px; }
+  .side-logo__rule { height: 2px; background-color: var(--accent); }
+  .side-logo__rule--left { width: 14px; }
+  .side-logo__dept {
+    font-family: 'Geist', sans-serif; font-weight: 700; text-transform: none;
+    font-size: 9px; letter-spacing: 0.01em; color: var(--accent); white-space: nowrap;
+  }
+  .site-nav { display: flex; align-items: center; gap: 2.2rem; }
+  .site-nav a {
+    font-family: 'Geist', sans-serif; font-weight: 700;
+    text-transform: none; letter-spacing: 0.01em;
+    font-size: 15px; color: var(--muted);
+    text-decoration: none; padding: 8px 2px;
+    position: relative; transition: color 0.2s;
+  }
+  .site-nav a:hover { color: var(--ink); }
+  .site-nav a.is-current { color: var(--accent); }
+  .site-nav a.is-current::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+    height: 2px; background: var(--accent);
+  }
+  .nav-toggle {
+    display: none; background: none; border: none; color: var(--ink);
+    width: 40px; height: 40px; align-items: center; justify-content: center; cursor: pointer;
+  }
+  .nav-toggle svg { width: 22px; height: 22px; }
+
+  /* ── PLACEHOLDER MEDIA BLOCKS ── */
+  .placeholder {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; text-align: center;
+    background: repeating-linear-gradient(135deg, var(--bg-soft), var(--bg-soft) 10px, #1A1A1A 10px, #1A1A1A 20px);
+    border: 1px dashed var(--line);
+    border-radius: 4px;
+    color: var(--muted);
+    padding: 2em;
+  }
+  .placeholder__icon { font-size: 22px; color: var(--faint); }
+  .placeholder__label {
+    font-family: 'Geist', sans-serif; font-weight: 700;
+    text-transform: none; letter-spacing: 0.01em; font-size: 13px; color: var(--ink);
+  }
+  .placeholder__spec {
+    font-family: 'Geist', sans-serif; font-size: 11px;
+    letter-spacing: 0; color: var(--muted); max-width: 30ch;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 86vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 0 6vw;
+    overflow: hidden;
+  }
+  .hero__media {
+    position: absolute; inset: 0;
+    z-index: 0;
+  }
+  .hero__media .placeholder { height: 100%; border: none; border-radius: 0; }
+  .hero__scrim {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.92) 100%);
+  }
+  .hero__content { position: relative; z-index: 2; max-width: 720px; }
+  .hero h1 {
+    font-family: 'Geist', sans-serif;
+    font-weight: 700;
+    font-size: clamp(38px, 6vw, 68px);
+    line-height: 0.98;
+    letter-spacing: -0.01em;
+    margin: 1vw 0 1.2vw;
+  }
+  .hero__sub {
+    font-size: clamp(15px, 1.6vw, 19px);
+    color: var(--ink);
+    opacity: 0.85;
+    max-width: 52ch;
+    margin-bottom: 2.2em;
+    font-weight: 300;
+  }
+
+  /* ── BUTTON (shared with sourcing.html) ── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.7em;
+    font-family: 'Geist', sans-serif; font-weight: 700;
+    text-transform: none; letter-spacing: 0.01em;
+    font-size: clamp(13px, 1.3vw, 16px);
+    background: var(--accent); color: #000; text-decoration: none;
+    padding: 0.95em 1.8em; border-radius: 2px;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+    box-shadow: 0 8px 30px rgba(61,242,184,0.28);
+    border: none; cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-2px); background: #6FF5CA; box-shadow: 0 12px 40px rgba(61,242,184,0.4); }
+  .btn__arrow { font-size: 1.1em; }
+
+  /* ── INTRO ── */
+  .intro { padding: 7vw 0 5vw; }
+  .intro .label { margin-bottom: 1.4vw; }
+  .intro p {
+    font-size: clamp(16px, 1.7vw, 21px);
+    max-width: 62ch;
+    font-weight: 300;
+    color: var(--ink);
+  }
+  .intro p strong { font-weight: 600; color: var(--ink); }
+
+  /* ── HOW IT WORKS (shared pattern with sourcing.html) ── */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2vw; }
+  .step { border-top: 2px solid var(--accent); padding-top: 1.2em; }
+  .step__no { font-family:'Geist',sans-serif; font-weight:700; color: var(--muted); letter-spacing:0.01em; font-size: 12px; }
+  .step h4 { font-weight: 600; font-size: clamp(16px,1.5vw,19px); margin: 0.4em 0 0.4em; }
+  .step p { color: var(--muted); font-weight: 300; font-size: clamp(13px,1.05vw,15px); }
+
+  /* ── THE POINT (callout) ── */
+  .point {
+    border-left: 2px solid var(--accent);
+    padding: 0.2em 0 0.2em 1.6em;
+    margin: 6vw 0;
+  }
+  .point p {
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 300;
+    color: var(--ink);
+    max-width: 46ch;
+  }
+  .point p strong { font-weight: 600; }
+
+  /* ── EXAMPLES GRID ── */
+  .examples { padding: 3vw 0 8vw; }
+  .examples .label { margin-bottom: 0.6vw; }
+  .examples h2 {
+    font-family: 'Geist', sans-serif;
+    font-weight: 700;
+    font-size: clamp(24px, 3vw, 38px);
+    max-width: 20ch;
+    margin-bottom: 2.4vw;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4vw;
+  }
+  .grid__item {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .grid__item .placeholder { height: 100%; }
+  .grid__item--tall { grid-row: span 2; aspect-ratio: 4 / 6; }
+
+  /* ── CTA BAND ── */
+  .cta-band {
+    padding: 7vw 0;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+  .cta-band .label { margin-bottom: 1vw; }
+  .cta-band h2 {
+    font-family: 'Geist', sans-serif;
+    font-weight: 700;
+    font-size: clamp(22px, 2.6vw, 32px);
+    max-width: 34ch;
+    margin: 0 auto 1.8vw;
+  }
+
+  /* ── FOOTER (shared pattern) ── */
+  footer {
+    padding: 4vw 6vw 5vw;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 16px;
+    border-top: 1px solid var(--line);
+  }
+  footer .label { color: var(--faint); }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 1.4em; }
+  .foot-links a {
+    color: var(--muted); text-decoration: none;
+    font-family: 'Geist', sans-serif; font-weight: 600;
+    text-transform: none; letter-spacing: 0.01em; font-size: 12px;
+    transition: color 0.15s ease;
+  }
+  .foot-links a:hover { color: var(--accent); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .grid__item--tall { grid-row: span 1; aspect-ratio: 4 / 3; }
+    .steps { grid-template-columns: repeat(2, 1fr); gap: 6vw 4vw; }
+  }
+
+  @media (max-width: 760px) {
+    .grid { grid-template-columns: 1fr; }
+    .hero { min-height: 78vh; }
+
+    .site-nav {
+      position: fixed; top: var(--topbar-h); left: 0; right: 0;
+      background: var(--bg-soft); border-bottom: 1px solid var(--line);
+      flex-direction: column; align-items: flex-start; gap: 0;
+      padding: 8px 6vw 18px;
+      transform: translateY(-8px); opacity: 0; pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .site-nav.is-open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .site-nav a { width: 100%; padding: 14px 0; font-size: 18px; border-bottom: 1px solid var(--line); }
+    .site-nav a:last-child { border-bottom: none; }
+    .nav-toggle { display: flex; }
+  }
+  .side-logo__img { display:block; height:26px; width:auto; }
+  .sidebar .side-logo__img { height:40px; }
+
+  /* ── WORKSHOP ACCESS (hero secondary action + live status) ── */
+  .hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+  .btn--ghost {
+    background: transparent; color: var(--ink); box-shadow: none;
+    border: 1px solid rgba(255,255,255,0.45);
+  }
+  .btn--ghost:hover { background: rgba(255,255,255,0.08); border-color: var(--ink); box-shadow: none; }
+  .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  .live-status {
+    display: inline-flex; align-items: center; gap: 10px; margin-top: 22px;
+    font-size: 14px; font-weight: 500; color: var(--muted);
+  }
+  .live-status__dot {
+    position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex: none;
+  }
+  .live-status__dot::after {
+    content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--accent);
+    animation: live-pulse 2.4s ease-out infinite;
+  }
+  @keyframes live-pulse { from { transform: scale(1); opacity: 0.6; } to { transform: scale(3); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .live-status__dot::after { animation: none; } }
+
+
+  /* ── CLIENT SESSION PAGE ── */
+  .session { padding: 12vh 0 14vh; }
+  .session h1 { font-size: clamp(40px, 6.5vw, 76px); font-weight: 700; letter-spacing: -0.035em; line-height: 0.98; margin: 14px 0 20px; }
+  .session__intro { color: var(--muted); font-size: 17px; max-width: 48ch; }
+  .resources { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 56px; max-width: 880px; }
+  .resource {
+    display: flex; flex-direction: column; gap: 10px; min-height: 190px;
+    padding: 26px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 2px;
+    text-decoration: none; transition: border-color 0.2s, background 0.2s;
+  }
+  .resource:hover { border-color: var(--accent); background: #181818; }
+  .resource:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .resource__icon { width: 30px; height: 30px; color: var(--accent); }
+  .resource__title { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin-top: 18px; }
+  .resource__desc { color: var(--muted); font-size: 15px; }
+  .resource__open { margin-top: auto; padding-top: 8px; font-size: 14px; font-weight: 700; color: var(--accent); }
+  .resource.is-pending { pointer-events: none; opacity: 0.55; }
+  .resource.is-pending .resource__open { color: var(--faint); }
+  .session__help { margin-top: 40px; font-size: 14px; color: var(--faint); }
+  .session__help a { color: var(--accent); }
+  .advocacy { margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--line); max-width: 880px; }
+  .advocacy h2 { font-size: clamp(22px, 2.6vw, 30px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+  .advocacy p { color: var(--muted); font-size: 16px; max-width: 52ch; margin-top: 10px; }
+  .advocacy__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 26px; }
+  .btn--ghost { background: transparent; color: var(--ink); box-shadow: none; border: 1px solid rgba(255,255,255,0.45); }
+  .btn--ghost:hover { background: rgba(255,255,255,0.08); border-color: var(--ink); box-shadow: none; }
+  .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  .btn.is-pending { pointer-events: none; opacity: 0.5; box-shadow: none; }
+  .advocacy__status { font-size: 14px; color: var(--accent); min-height: 1.4em; }
+</style>
+</head>
+
+
+
+<body>
+
+<header>
+  <a class="side-logo" href="index.html" aria-label="Makers Department — home"><img class="side-logo__img" src="brand/md-logo-green-white.svg" alt="Makers Department"></a>
+  <nav class="site-nav" id="site-nav">
+    <a href="index.html">Intro</a>
+    <a href="work.html">Work</a>
+    <a href="sourcing.html">Sourcing</a>
+    <a href="ai-campaigns.html" class="is-current">AI Campaigns</a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </button>
+</header>
+
+<main>
+  <section class="session">
+    <div class="wrap">
+      <div class="label">AI Campaigns workshop</div>
+      <h1>WavetecF25</h1>
+      <p class="session__intro">Everything from our sessions in one place. The Miro board is where we build the framework together, and the Drive folder holds the recordings and documents.</p>
+
+      <div class="resources">
+        <!-- EDIT: replace the href below with the Miro board link -->
+        <a class="resource" href="https://miro.com/welcomeonboard/K3NRazMyT3JBM1lzcjVPOUkwVXNMQVJmTzRFa05QaGlxZXNmREhuVXVVa1lyMm1YZWhKYWhuSUxUbXRUYVlIeEcyWHJVV0tDWHR0NGxwTzJsd3E3QStuTmFaa3daT1FoeUE5anp6cnVYOXJScklxNmRXcGlmd1JWcmtjRE8yOXRQdGo1ZEV3bUdPQWRZUHQzSGl6V2NBPT0hdjE=?share_link_id=585285819042" target="_blank" rel="noopener noreferrer">
+          <svg class="resource__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M7 8h4v4H7zM14 8h3M14 12h3M7 16h10"/></svg>
+          <span class="resource__title">Miro board</span>
+          <span class="resource__desc">The live workshop board: workflow, guardrails and standards.</span>
+          <span class="resource__open">Open board</span>
+        </a>
+
+        <!-- EDIT: replace the href below with the Google Drive folder link -->
+        <a class="resource" href="https://drive.google.com/drive/folders/1Ygusp1VS4AMnfv1ml3iNNv1vHDzONaqb?usp=drive_link" target="_blank" rel="noopener noreferrer">
+          <svg class="resource__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/></svg>
+          <span class="resource__title">Google Drive folder</span>
+          <span class="resource__desc">Session recordings, notes and framework documents.</span>
+          <span class="resource__open">Open folder</span>
+        </a>
+      </div>
+
+      <section class="advocacy">
+        <h2>Know a team that could use this?</h2>
+        <p>If the workshop has been useful, the best thanks is passing it on. Share the AI Campaigns page with another marketing team, or leave a short Google review.</p>
+        <div class="advocacy__actions">
+          <button class="btn" type="button" id="share-btn">Share AI Campaigns</button>
+          <!-- EDIT: replace the href below with your Google review link (Google Business Profile > Ask for reviews) -->
+          <a class="btn btn--ghost" id="review-btn" href="https://share.google/rk0Lmk8MQk54IWosJ" target="_blank" rel="noopener noreferrer">Leave a Google review</a>
+          <span class="advocacy__status" id="share-status" role="status"></span>
+        </div>
+      </section>
+
+      <p class="session__help">Can't open something? Make sure you're signed in with the Google account we shared it with, or <a href="mailto:fabio@makersdepartment.com">get in touch</a>.</p>
+    </div>
+  </section>
+</main>
+
+
+
+<footer>
+  <div class="label">Makers Department — Lisbon, sometimes London</div>
+  <div class="foot-links">
+    <a href="mailto:makersdepartment@gmail.com">Email</a>
+    <a href="https://calendar.app.google/BX7oAqHSHxMpu7866">Book a call</a>
+    <a href="https://wa.me/447541904649?text=Hi%2C%20I%27d%20like%20a%20short%20chat%20about%20AI%20campaign%20visuals.">WhatsApp</a>
+    <a href="https://www.linkedin.com/company/10312547/">LinkedIn</a>
+    <a href="work.html">Latest Work</a>
+    <a href="index.html">Intro</a>
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('nav-toggle');
+  const siteNav = document.getElementById('site-nav');
+  navToggle.addEventListener('click', () => {
+    const open = siteNav.classList.toggle('is-open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+</script>
+
+<script>
+  // Any resource whose link hasn't been pasted in yet shows as "Link coming soon" instead of breaking.
+  document.querySelectorAll('.resource').forEach(a => {
+    if (a.getAttribute('href').startsWith('PASTE')) {
+      a.classList.add('is-pending');
+      a.removeAttribute('href');
+      a.setAttribute('aria-disabled', 'true');
+      a.querySelector('.resource__open').textContent = 'Link coming soon';
+    }
+  });
+  // Share the PUBLIC campaign page, never this private session page.
+  const shareUrl = 'https://makersdepartment.com/ai-campaigns';
+  const shareStatus = document.getElementById('share-status');
+  document.getElementById('share-btn').addEventListener('click', async () => {
+    const data = { title: 'AI Campaigns | Makers Department', text: 'Makers Department builds AI content systems for marketing teams. Worth a look:', url: shareUrl };
+    if (navigator.share) {
+      try { await navigator.share(data); return; } catch (e) { if (e.name === 'AbortError') return; }
+    }
+    try { await navigator.clipboard.writeText(shareUrl); shareStatus.textContent = 'Link copied, ready to paste.'; }
+    catch (_) { window.location.href = 'mailto:?subject=' + encodeURIComponent(data.title) + '&body=' + encodeURIComponent(data.text + ' ' + shareUrl); }
+  });
+  const review = document.getElementById('review-btn');
+  if (review.getAttribute('href').startsWith('PASTE')) {
+    review.classList.add('is-pending'); review.removeAttribute('href'); review.setAttribute('aria-disabled', 'true');
+    review.textContent = 'Google review coming soon';
+  }
+</script>
+</body>
+</html>
